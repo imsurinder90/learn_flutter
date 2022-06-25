@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "216202119622",
+    "project_id": "api-project-216202119622",
+    "storage_bucket": "api-project-216202119622.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216202119622:android:d8a29d31707cb002bc0ac7",
+        "android_client_info": {
+          "package_name": "net.example.motvnlquotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216202119622-eivpn4c65jsp0nuuev8hkpukdl3itpnl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAqTzpB1KetiBwtO4BdE9EJdCWQvPH44uE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216202119622-eivpn4c65jsp0nuuev8hkpukdl3itpnl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

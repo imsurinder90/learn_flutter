@@ -1,0 +1,20 @@
+{
+    "quotes": 
+    [
+        {
+            "id": 8,
+            "image": "https://i.pinimg.com/564x/4c/8f/4d/4c8f4d0e24b968cbe7a11898058e1bfc.jpg",
+            "category": "Abraham Lincoln"
+        },
+        {
+            "id": 9,
+            "image": "https://www.whatsappimages.in/wp-content/uploads/2021/05/Motivational-Quotes-In-Hindi-Images.jpg",
+            "category": "Abraham Lincoln"
+        },
+        {
+            "id": 10,
+            "image": "https://www.whatsappimages.in/wp-content/uploads/2021/05/Motivational-Quotes-In-Hindi-Pics-Download.jpg",
+            "category": "Abraham Lincoln"
+        }
+    ]
+}
