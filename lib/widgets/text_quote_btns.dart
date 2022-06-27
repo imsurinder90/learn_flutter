@@ -26,12 +26,14 @@ class TextQuoteBtns extends StatefulWidget {
 class _TextQuoteBtnsState extends State<TextQuoteBtns> {
   bool isPressed = false;
   bool isBookmarkPressed = false;
+  bool isDisabledLove = false;
 
   @override
   Widget build(BuildContext context) {
     var item = widget.item;
     var key = widget.itemKey;
     var screenName = widget.screenName;
+    isDisabledLove = (screenName == "quote_details") ? true : false;
     return Padding(
       padding: const EdgeInsets.fromLTRB(4.0, 0, 4, 12),
       child: Row(
@@ -40,19 +42,26 @@ class _TextQuoteBtnsState extends State<TextQuoteBtns> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              IconButton(
-                icon: Icon(isPressed ? Icons.favorite : Icons.favorite_border),
-                color: isPressed ? Colors.red : Colors.black,
-                onPressed: () async {
-                  if (!isPressed) {
-                    setState(() {
-                      isPressed = true;
-                    });
-                    // await UserSharedPrefernces.saveTextQuote(item);
-                    Utilities.mSnackBar(context, "Quote is liked");
-                  }
-                },
-              ),
+              (isDisabledLove)
+                  ? IconButton(
+                      icon: Icon(Icons.favorite),
+                      color: Colors.grey,
+                      onPressed: () {},
+                    )
+                  : IconButton(
+                      icon: Icon(
+                          isPressed ? Icons.favorite : Icons.favorite_border),
+                      color: isPressed ? Colors.red : Colors.black,
+                      onPressed: () async {
+                        if (!isPressed) {
+                          setState(() {
+                            isPressed = true;
+                          });
+                          // await UserSharedPrefernces.saveTextQuote(item);
+                          Utilities.mSnackBar(context, "Quote is liked");
+                        }
+                      },
+                    ),
               SizedBox(
                 width: 16.0,
               ),
@@ -97,13 +106,15 @@ class _TextQuoteBtnsState extends State<TextQuoteBtns> {
                     )
                   : IconButton(
                       icon: Icon(Icons.bookmark_remove),
-                      color: Colors.black,
+                      color: (!isDisabledLove) ? Colors.black : Colors.grey,
                       onPressed: () {
                         // Gives error msg, accessing local hidden methods
-                        String newData =
-                            TextQuote.toSerializedData(widget.item);
-                        UserSharedPrefernces.removeTextQuote(newData);
-                        widget.callbackMethod();
+                        if (!isDisabledLove) {
+                          String newData =
+                              TextQuote.toSerializedData(widget.item);
+                          UserSharedPrefernces.removeTextQuote(newData);
+                          widget.callbackMethod();
+                        }
                       },
                     ),
             ],

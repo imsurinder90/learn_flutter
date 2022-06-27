@@ -1,9 +1,20 @@
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 class Utilities {
+  static int getRandomNo() {
+    var random = Random();
+    return random.nextInt(pow(2, 31).toInt() - 1);
+  }
+
+  static int getRandomInRange(int from, int to) {
+    Random random = new Random();
+    return random.nextInt(to) + from; // from 10 upto 99 included
+  }
+
   static String uuid2() {
     final now = DateTime.now();
     return now.microsecondsSinceEpoch.toString();
