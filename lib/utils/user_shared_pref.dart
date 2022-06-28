@@ -7,9 +7,19 @@ class UserSharedPrefernces {
   static String textKey = "textKey";
   static String lastDayFetched = "lastDayFetched";
   static String dailyQuotes = "dailyQuotes";
+  static String dailyNotify = "dailyNotify";
 
   static Future init() async {
     _preferences = await SharedPreferences.getInstance();
+  }
+
+  // Notifications method
+  static bool getDailyNotify() {
+    return _preferences.getBool(dailyNotify) ?? true;
+  }
+
+  static setDailyNotify(bool value) {
+    return _preferences.setBool(dailyNotify, value);
   }
 
   // lastdayfetched method

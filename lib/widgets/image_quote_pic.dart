@@ -11,15 +11,22 @@ class ImageQuotePic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Flexible(
-      child: CachedNetworkImage(
-        fadeInDuration: const Duration(milliseconds: 0),
-        fit: BoxFit.cover,
-        imageUrl: image,
-        placeholder: (context, url) => Image.asset(
-          'assets/images/plholder.png',
-          fit: BoxFit.cover,
-        ),
-      ),
+      child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: 360,
+          ),
+          child: Container(
+            color: Color.fromARGB(255, 192, 192, 192),
+            child: CachedNetworkImage(
+              fadeInDuration: const Duration(milliseconds: 0),
+              fit: BoxFit.cover,
+              imageUrl: image,
+              // placeholder: (context, url) => Image.asset(
+              //   'assets/images/plholder.png',
+              //   fit: BoxFit.cover,
+              // ),
+            ),
+          )),
     );
   }
 }

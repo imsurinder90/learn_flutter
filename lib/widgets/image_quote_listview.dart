@@ -41,7 +41,14 @@ class ImageQuoteListView extends StatelessWidget {
                     fn: ImageFireStoreDB.incrementLikes,
                     qctx: context,
                     screenName: screenName,
-                    callbackMethod: callbackMethod)
+                    callbackMethod: callbackMethod),
+                // SizedBox(
+                //   height: 15,
+                //   child: const DecoratedBox(
+                //     decoration: BoxDecoration(
+                //         color: Color.fromARGB(255, 206, 206, 206)),
+                //   ),
+                // )
               ],
             );
           } else {

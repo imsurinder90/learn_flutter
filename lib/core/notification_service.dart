@@ -47,7 +47,7 @@ class NotificationService {
   final NotificationDetails notificationDetails =
       NotificationDetails(android: _androidNotificationDetails);
 
-  Future<void> init() async {
+  Future<FlutterLocalNotificationsPlugin> init() async {
     final AndroidInitializationSettings androidInitializationSettings =
         AndroidInitializationSettings("@mipmap/ic_launcher");
 
@@ -61,6 +61,16 @@ class NotificationService {
       initializationSettings,
       onSelectNotification: onSelectNotification,
     );
+    return flutterLocalNotificationsPlugin;
+
+    // final NotificationAppLaunchDetails? notificationAppLaunchDetails =
+    //     await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+
+    // String? payload = notificationAppLaunchDetails!.payload;
+    // print("payload: $payload");
+    // if (payload != null) {
+    //   onSelectNotification(payload);
+    // }
   }
 
   Future<void> showNotification(
@@ -118,6 +128,6 @@ class NotificationService {
 
   Future<void> onSelectNotification(String? payload) async {
     await NavigationService.instance.navigateTo(
-        MaterialPageRoute(builder: (_) => SecondScreen(payload: payload)));
+        MaterialPageRoute(builder: (_) => DailyQuotes(payload: payload)));
   }
 }

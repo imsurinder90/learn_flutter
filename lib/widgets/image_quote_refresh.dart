@@ -19,9 +19,16 @@ class _ImageQuoteRefreshState extends State<ImageQuoteRefresh> {
   late Future<List<ImgQuote>> imgQuotesList;
   ValueNotifier<String> mycategory = ImageQuoteRefresh.category;
   late QueryDocumentSnapshot<Map<String, dynamic>> lastSnap;
-  int docLimit = 2;
+  int docLimit = 6;
   bool hasNext = true;
   bool isLoading = false;
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
 
   @override
   void initState() {
@@ -163,14 +170,14 @@ class _ImageQuoteRefreshState extends State<ImageQuoteRefresh> {
                 return Center(child: Text("Fetch Something"));
               case ConnectionState.active:
               case ConnectionState.waiting:
-                return Center(child: Container());
+                return Center(child: Text("Please wait while fetching"));
               case ConnectionState.done:
                 if (snapshot.hasError) {
                   return Center(child: Text("Some error occured."));
                 }
                 var data = snapshot.data!;
                 if (data.isEmpty) {
-                  return Container();
+                  return Center(child: Text("No picture quotes found"));
                 }
                 return ImageQuoteListView(
                   data: data,

@@ -18,10 +18,17 @@ class _TextQuoteRefreshState extends State<TextQuoteRefresh> {
   late Future<List<TextQuote>> textQuotesList;
   ValueNotifier<String> mycategory = TextQuoteRefresh.category;
   late QueryDocumentSnapshot<Map<String, dynamic>> lastSnap;
-  int docLimit = 2;
+  int docLimit = 6;
   bool hasNext = true;
   bool isLoading = false;
   List<GlobalKey> renderKeys = [];
+
+  @override
+  void setState(fn) {
+    if (mounted) {
+      super.setState(fn);
+    }
+  }
 
   @override
   void initState() {
@@ -175,15 +182,16 @@ class _TextQuoteRefreshState extends State<TextQuoteRefresh> {
               case ConnectionState.none:
                 return Center(child: Text("Fetch Something"));
               case ConnectionState.active:
+                return Center(child: CircularProgressIndicator());
               case ConnectionState.waiting:
-                return Center(child: Container());
+                return Center(child: Text("Please wait while fetching"));
               case ConnectionState.done:
                 if (snapshot.hasError) {
                   return Center(child: Text("Some error occured."));
                 }
                 var data = snapshot.data!;
                 if (data.isEmpty) {
-                  return Container();
+                  return Center(child: Text("No quotes found"));
                 }
                 return TextQuoteListView(
                     data: data,

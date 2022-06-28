@@ -42,11 +42,11 @@ class _ImageQuoteBtnsState extends State<ImageQuoteBtns> {
                 color: isPressed ? Colors.red : Colors.black,
                 onPressed: () async {
                   if (!isPressed) {
-                    await widget.fn(
-                        widget.qctx, widget.data.id, widget.data.likes);
                     setState(() {
                       isPressed = true;
                     });
+                    await widget.fn(
+                        widget.qctx, widget.data.id, widget.data.likes);
                   }
                 },
               ),

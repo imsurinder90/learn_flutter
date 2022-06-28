@@ -19,6 +19,12 @@ class TextQuotePic extends StatefulWidget {
 class _TextQuotePicState extends State<TextQuotePic> {
   @override
   Widget build(BuildContext context) {
+    final splitted = widget.item.colors.split(",");
+    List<Color> mColors = [
+      Utilities.hexToColor(splitted[0].toString()),
+      Utilities.hexToColor(splitted[1].toString())
+    ];
+
     return RepaintBoundary(
       key: widget.itemKey,
       child: Card(
@@ -35,7 +41,7 @@ class _TextQuotePicState extends State<TextQuotePic> {
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: GColors.getRandomColor(),
+                  colors: mColors,
                 ),
               ),
               child: Column(

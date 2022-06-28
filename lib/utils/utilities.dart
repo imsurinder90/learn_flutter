@@ -2,7 +2,10 @@ import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:package_info_plus/package_info_plus.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Utilities {
   static int getRandomNo() {
@@ -25,7 +28,36 @@ class Utilities {
     return Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
   }
 
+  static void rateOnPlayStore() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+    // String appPackageName = packageInfo.appName;
+    String appPackageName = "net.sumitk.quotesmeditation";
+    try {
+      launchUrl(Uri.parse("market://details?id=$appPackageName"));
+    } on PlatformException catch (e) {
+      launchUrl(Uri.parse(
+          "https://play.google.com/store/apps/details?id=$appPackageName"));
+    } finally {
+      launchUrl(Uri.parse(
+          "https://play.google.com/store/apps/details?id=$appPackageName"));
+    }
+  }
+
+  static void sendEmail() async {
+    final Uri params = Uri(
+      scheme: 'mailto',
+      path: 'srana977@gmail.com',
+    );
+    String url = params.toString();
+    if (await canLaunchUrl(params)) {
+      await launchUrl(params);
+    } else {
+      print('Could not launch $url');
+    }
+  }
+
   static mSnackBar(context, msg) {
+    ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       behavior: SnackBarBehavior.floating,
       backgroundColor: ui.Color.fromARGB(255, 39, 34, 34),
@@ -38,6 +70,7 @@ class Utilities {
         borderRadius: BorderRadius.circular(8),
       ),
       content: Text(msg),
+      duration: Duration(seconds: 1),
     ));
   }
 

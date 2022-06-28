@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/pages/image_quote_page.dart';
 
 class NavigationService {
   late GlobalKey<NavigatorState> navigationKey;
@@ -14,7 +15,16 @@ class NavigationService {
   }
 
   Future<dynamic> navigateTo(Route _rn) {
-    return navigationKey.currentState!.push(_rn);
+    // Route<dynamic> rt = MaterialPageRoute(builder: (_) => ImageQuotePage());
+    return navigationKey.currentState!
+        .pushAndRemoveUntil(_rn, (route) => route.isFirst);
+
+    // ModalRoute.withName(
+    //     '/imagequote') // Replace this with your root screen's route name (usually '/')
+    // );
+
+    // navigationKey.currentState!.popUntil(ModalRoute.withName('/dailyquote'));
+    // return navigationKey.currentState!.push(_rn).then((value) => null);
   }
 
   Future<dynamic> navigateToRoute(MaterialPageRoute _rn) {

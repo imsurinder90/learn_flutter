@@ -32,14 +32,12 @@ class _FavImagePageState extends State<FavImagePage> {
   @override
   Widget build(BuildContext context) {
     if (data.isNotEmpty) {
-      return Container(
-        child: ImageQuoteListView(
-          data: data,
-          hasNext: hasNext,
-          controller: controller,
-          screenName: "fav",
-          callbackMethod: getImgData,
-        ),
+      return ImageQuoteListView(
+        data: data,
+        hasNext: hasNext,
+        controller: controller,
+        screenName: "fav",
+        callbackMethod: getImgData,
       );
     } else {
       return Center(

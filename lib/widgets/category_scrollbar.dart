@@ -29,7 +29,7 @@ class CategoryScrollBar extends StatelessWidget {
                       return InkWell(
                         onTap: () {
                           // print("on tap called");
-                          if (which == "category") {
+                          if (which == "image") {
                             ImageQuoteRefresh.category.value = cats[index].name;
                           } else {
                             TextQuoteRefresh.category.value = cats[index].name;

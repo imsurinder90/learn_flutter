@@ -36,24 +36,20 @@ class _ImageQuotePageState extends State<ImageQuotePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-        Container(
-            alignment: Alignment.topLeft,
-            padding: EdgeInsets.only(top: 10, left: 10, bottom: 0),
-            child: Text("Best Motivation Quotes",
-                style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20))),
-        CategoryScrollBar(
-          cats: ImageCategoryModel.cats,
-          which: "image",
-        ),
-        ImageQuoteRefresh()
-      ])),
-      bottomNavigationBar: BottonNavigationWidget(),
-    );
+    return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+      Container(
+          alignment: Alignment.topLeft,
+          padding: EdgeInsets.only(top: 10, left: 10, bottom: 0),
+          child: Text("Best Motivation Quotes",
+              style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20))),
+      CategoryScrollBar(
+        cats: ImageCategoryModel.cats,
+        which: "image",
+      ),
+      ImageQuoteRefresh()
+    ]);
   }
 }

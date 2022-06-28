@@ -1,142 +1,145 @@
 import 'dart:math';
 
-import 'package:flutter/material.dart';
-import 'package:learn_flutter/utils/utilities.dart';
-
 class GColors {
-  static List<List<Color>> items = [
+  static List<List<String>> items = [
     [
-      Utilities.hexToColor("#414141"),
-      Utilities.hexToColor("#000000"),
+      "#414141",
+      "#000000",
     ],
     [
-      Utilities.hexToColor("#380036"),
-      Utilities.hexToColor("#0CBABA"),
+      "#380036",
+      "#0CBABA",
     ],
     [
-      Utilities.hexToColor("#0D324D"),
-      Utilities.hexToColor("#7F5A83"),
+      "#0D324D",
+      "#7F5A83",
     ],
     [
-      Utilities.hexToColor("#233329"),
-      Utilities.hexToColor("#63D471"),
+      "#233329",
+      "#63D471",
     ],
     [
-      Utilities.hexToColor("#A71D31"),
-      Utilities.hexToColor("#3F0D12"),
+      "#A71D31",
+      "#3F0D12",
     ],
     [
-      Utilities.hexToColor("#28313B"),
-      Utilities.hexToColor("#485461"),
+      "#28313B",
+      "#485461",
     ],
     [
-      Utilities.hexToColor("#28313B"),
-      Utilities.hexToColor("#AF8C9D"),
+      "#28313B",
+      "#AF8C9D",
     ],
     [
-      Utilities.hexToColor("#D2CCC4"),
-      Utilities.hexToColor("#2F4353"),
+      "#D2CCC4",
+      "#2F4353",
     ],
     [
-      Utilities.hexToColor("#5D4954"),
-      Utilities.hexToColor("#FFA69E"),
+      "#5D4954",
+      "#FFA69E",
     ],
     [
-      Utilities.hexToColor("#000000"),
-      Utilities.hexToColor("#923CB5"),
+      "#000000",
+      "#923CB5",
     ],
     [
-      Utilities.hexToColor("#000000"),
-      Utilities.hexToColor("#A55C1B"),
+      "#000000",
+      "#A55C1B",
     ],
     [
-      Utilities.hexToColor("#B82E1F"),
-      Utilities.hexToColor("#000000"),
+      "#B82E1F",
+      "#000000",
     ],
     [
-      Utilities.hexToColor("#000000"),
-      Utilities.hexToColor("#FFEAA7"),
+      "#000000",
+      "#FFEAA7",
     ],
     [
-      Utilities.hexToColor("#000000"),
-      Utilities.hexToColor("#E84393"),
+      "#000000",
+      "#E84393",
     ],
     [
-      Utilities.hexToColor("#000000"),
-      Utilities.hexToColor("#130F40"),
+      "#000000",
+      "#130F40",
     ],
     [
-      Utilities.hexToColor("#000000"),
-      Utilities.hexToColor("#7ED6DF"),
+      "#000000",
+      "#7ED6DF",
     ],
     [
-      Utilities.hexToColor("#5E5368"),
-      Utilities.hexToColor("#000000"),
+      "#5E5368",
+      "#000000",
     ],
     [
-      Utilities.hexToColor("#576574"),
-      Utilities.hexToColor("#C2B6B6"),
+      "#576574",
+      "#C2B6B6",
     ],
     [
-      Utilities.hexToColor("#D58936"),
-      Utilities.hexToColor("#69140E"),
+      "#D58936",
+      "#69140E",
     ],
     [
-      Utilities.hexToColor("#7D6D61"),
-      Utilities.hexToColor("#5E574D"),
+      "#7D6D61",
+      "#5E574D",
     ],
     [
-      Utilities.hexToColor("#422419"),
-      Utilities.hexToColor("#000000"),
+      "#422419",
+      "#000000",
     ],
     [
-      Utilities.hexToColor("#12100E"),
-      Utilities.hexToColor("#2B4162"),
+      "#12100E",
+      "#2B4162",
     ],
     [
-      Utilities.hexToColor("#5A585A"),
-      Utilities.hexToColor("#090947"),
+      "#5A585A",
+      "#090947",
     ],
     [
-      Utilities.hexToColor("#313131"),
-      Utilities.hexToColor("#6DADDB"),
+      "#313131",
+      "#6DADDB",
     ],
     [
-      Utilities.hexToColor("#000000"),
-      Utilities.hexToColor("#4D4855"),
+      "#000000",
+      "#4D4855",
     ],
     [
-      Utilities.hexToColor("#FFAFBD"),
-      Utilities.hexToColor("#FFC3A0"),
+      "#FFAFBD",
+      "#FFC3A0",
     ],
     [
-      Utilities.hexToColor("#FF7E5F"),
-      Utilities.hexToColor("#FEB47B"),
+      "#FF7E5F",
+      "#FEB47B",
     ],
     [
-      Utilities.hexToColor("#380036"),
-      Utilities.hexToColor("#0CBABA"),
+      "#380036",
+      "#0CBABA",
     ],
     [
-      Utilities.hexToColor("#0D324D"),
-      Utilities.hexToColor("#7F5A83"),
+      "#0D324D",
+      "#7F5A83",
     ],
     [
-      Utilities.hexToColor("#A71D31"),
-      Utilities.hexToColor("#3F0D12"),
+      "#A71D31",
+      "#3F0D12",
     ],
     [
-      Utilities.hexToColor("#2C3E50"),
-      Utilities.hexToColor("#000000"),
+      "#2C3E50",
+      "#000000",
     ],
     [
-      Utilities.hexToColor("#2A5470"),
-      Utilities.hexToColor("#4C4177"),
+      "#2A5470",
+      "#4C4177",
     ],
   ];
 
+  // Utilities.hexToColor("#0D324D"),
   static getRandomColor() {
     var randomItem = items[Random().nextInt(items.length)];
+    return randomItem;
+  }
+
+  static getRandomColorAsString() {
+    var randomItem = items[Random().nextInt(items.length)].join(",");
     return randomItem;
   }
 

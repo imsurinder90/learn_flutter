@@ -39,19 +39,17 @@ class _FavTextPageState extends State<FavTextPage> {
   @override
   Widget build(BuildContext context) {
     if (data.isNotEmpty) {
-      return Container(
-        child: TextQuoteListView(
-          data: data,
-          hasNext: hasNext,
-          controller: controller,
-          renderKeys: renderKeys,
-          screenName: "fav",
-          callbackMethod: getTextData,
-        ),
+      return TextQuoteListView(
+        data: data,
+        hasNext: hasNext,
+        controller: controller,
+        renderKeys: renderKeys,
+        screenName: "fav",
+        callbackMethod: getTextData,
       );
     } else {
       return Center(
-        child: Text("No Picture quoutes."),
+        child: Text("No quotes found."),
       );
     }
   }

@@ -20,8 +20,8 @@ class ImageQuoteTitle extends StatelessWidget {
           Row(
             children: [
               Container(
-                height: 40.0,
-                width: 40.0,
+                height: 25.0,
+                width: 25.0,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
