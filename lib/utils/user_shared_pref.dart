@@ -15,7 +15,7 @@ class UserSharedPrefernces {
 
   // Notifications method
   static bool getDailyNotify() {
-    return _preferences.getBool(dailyNotify) ?? true;
+    return _preferences.getBool(dailyNotify) ?? false;
   }
 
   static setDailyNotify(bool value) {

@@ -27,30 +27,62 @@ class ImageQuoteListView extends StatelessWidget {
         itemCount: data.length + 1,
         itemBuilder: (context, index) {
           if (index < data.length) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                ImageQuoteTitle(data: data, index: index),
-                ImageQuotePic(
-                  image: data[index].image,
+            return ConstrainedBox(
+                constraints: BoxConstraints(
+                  minHeight: 300,
+                  // maxWidth: MediaQuery.of(context).size.width - 10,
                 ),
-                ImageQuoteBtns(
-                    data: data[index],
-                    fn: ImageFireStoreDB.incrementLikes,
-                    qctx: context,
-                    screenName: screenName,
-                    callbackMethod: callbackMethod),
-                // SizedBox(
-                //   height: 15,
-                //   child: const DecoratedBox(
-                //     decoration: BoxDecoration(
-                //         color: Color.fromARGB(255, 206, 206, 206)),
-                //   ),
-                // )
-              ],
-            );
+                child: Container(
+                  width: MediaQuery.of(context).size.width - 5,
+                  margin: EdgeInsets.fromLTRB(1, 0, 1, 10),
+                  padding: EdgeInsets.only(bottom: 0),
+                  // decoration: BoxDecoration(
+                  //   boxShadow: kElevationToShadow[4],
+                  //   color: Theme.of(context).bottomAppBarColor,
+                  // ),
+                  child: Card(
+                    elevation: 5,
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        ImageQuotePic(
+                          image: data[index].image,
+                        ),
+                        ImageQuoteBtns(
+                            data: data[index],
+                            fn: ImageFireStoreDB.incrementLikes,
+                            qctx: context,
+                            screenName: screenName,
+                            callbackMethod: callbackMethod),
+                      ],
+                    ),
+                  ),
+                ));
+
+            // return Column(
+            //   mainAxisAlignment: MainAxisAlignment.start,
+            //   mainAxisSize: MainAxisSize.min,
+            //   crossAxisAlignment: CrossAxisAlignment.stretch,
+            //   children: [
+            //     // ImageQuoteTitle(data: data, index: index),
+            //     ImageQuotePic(
+            //       image: data[index].image,
+            //     ),
+            //     ImageQuoteBtns(
+            //         data: data[index],
+            //         fn: ImageFireStoreDB.incrementLikes,
+            //         qctx: context,
+            //         screenName: screenName,
+            //         callbackMethod: callbackMethod),
+            //     // SizedBox(
+            //     //   height: 15,
+            //     //   child: const DecoratedBox(
+            //     //     decoration: BoxDecoration(
+            //     //         color: Color.fromARGB(255, 206, 206, 206)),
+            //     //   ),
+            //     // )
+            //   ],
+            // );
           } else {
             // return Container();
             return Center(

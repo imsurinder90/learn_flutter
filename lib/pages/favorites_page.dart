@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter/pages/favorite_image_page.dart';
 import 'package:learn_flutter/pages/favorite_text_page.dart';
-import 'package:learn_flutter/utils/utilities.dart';
-import 'package:learn_flutter/widgets/bottom_menubar.dart';
+import 'package:learn_flutter/theme/themes.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -35,7 +34,7 @@ class _FavoritePageState extends State<FavoritePage>
         Column(
           children: [
             Container(
-              color: Colors.blueAccent,
+              color: Theme.of(context).colorScheme.appBarBgColor,
               margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
               padding: EdgeInsets.symmetric(
                 horizontal: 15,
@@ -107,9 +106,12 @@ class _FavoritePageState extends State<FavoritePage>
           ],
         ),
         Expanded(
-          child: TabBarView(
-            controller: tabController,
-            children: [FavImagePage(), FavTextPage()],
+          child: Container(
+            color: Theme.of(context).bottomAppBarColor,
+            child: TabBarView(
+              controller: tabController,
+              children: [FavImagePage(), FavTextPage()],
+            ),
           ),
         )
       ],

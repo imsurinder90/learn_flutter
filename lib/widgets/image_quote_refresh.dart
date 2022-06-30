@@ -19,7 +19,7 @@ class _ImageQuoteRefreshState extends State<ImageQuoteRefresh> {
   late Future<List<ImgQuote>> imgQuotesList;
   ValueNotifier<String> mycategory = ImageQuoteRefresh.category;
   late QueryDocumentSnapshot<Map<String, dynamic>> lastSnap;
-  int docLimit = 6;
+  int docLimit = 9;
   bool hasNext = true;
   bool isLoading = false;
 

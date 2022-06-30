@@ -14,7 +14,7 @@ class Utilities {
   }
 
   static int getRandomInRange(int from, int to) {
-    Random random = new Random();
+    Random random = Random();
     return random.nextInt(to) + from; // from 10 upto 99 included
   }
 

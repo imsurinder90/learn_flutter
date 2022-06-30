@@ -34,92 +34,112 @@ class _TextQuoteBtnsState extends State<TextQuoteBtns> {
     var key = widget.itemKey;
     var screenName = widget.screenName;
     isDisabledLove = (screenName == "quote_details") ? true : false;
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(4.0, 0, 4, 12),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              (isDisabledLove)
-                  ? IconButton(
-                      icon: Icon(Icons.favorite),
-                      color: Colors.grey,
-                      onPressed: () {},
-                    )
-                  : IconButton(
-                      icon: Icon(
-                          isPressed ? Icons.favorite : Icons.favorite_border),
-                      color: isPressed ? Colors.red : Colors.black,
-                      onPressed: () async {
-                        if (!isPressed) {
-                          setState(() {
-                            isPressed = true;
-                          });
-                          // await UserSharedPrefernces.saveTextQuote(item);
-                          Utilities.mSnackBar(context, "Quote is liked");
-                        }
-                      },
-                    ),
-              SizedBox(
-                width: 16.0,
-              ),
-              IconButton(
-                icon: Icon(Icons.download_outlined),
-                color: Colors.black,
-                onPressed: () async {
-                  TextUtils.takeScreenShot(context, key, false);
-                },
-              ),
-              SizedBox(
-                width: 16.0,
-              ),
-              IconButton(
-                icon: Icon(Icons.share_outlined),
-                color: Colors.black,
-                onPressed: () async {
-                  TextUtils.takeScreenShot(context, key, true);
-                },
-              ),
-              SizedBox(
-                width: 16.0,
-              ),
-              (widget.screenName == "text")
-                  ? IconButton(
-                      icon: Icon(!isBookmarkPressed
-                          ? Icons.bookmark_border_outlined
-                          : Icons.bookmark_added),
-                      color: Colors.black,
-                      onPressed: () {
-                        // Gives error msg, accessing local hidden methods
-                        if (!isBookmarkPressed) {
-                          String newData =
-                              TextQuote.toSerializedData(widget.item);
-                          UserSharedPrefernces.saveTextQuote(newData);
-                          setState(() {
-                            isBookmarkPressed = true;
-                          });
-                          Utilities.mSnackBar(context, "Quote is bookmarked!");
-                        }
-                      },
-                    )
-                  : IconButton(
-                      icon: Icon(Icons.bookmark_remove),
-                      color: (!isDisabledLove) ? Colors.black : Colors.grey,
-                      onPressed: () {
-                        // Gives error msg, accessing local hidden methods
-                        if (!isDisabledLove) {
-                          String newData =
-                              TextQuote.toSerializedData(widget.item);
-                          UserSharedPrefernces.removeTextQuote(newData);
-                          widget.callbackMethod();
-                        }
-                      },
-                    ),
-            ],
-          ),
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      padding: EdgeInsets.zero,
+      height: 43,
+      decoration: BoxDecoration(
+        boxShadow: const [
+          BoxShadow(
+              offset: Offset(0.0, 8),
+              blurRadius: 7,
+              spreadRadius: -1.5,
+              color: Color(0x33000000)),
         ],
+        color: Theme.of(context).bottomAppBarColor,
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(4.0, 0, 0, 0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                (isDisabledLove)
+                    ? IconButton(
+                        icon: Icon(Icons.favorite),
+                        color: Colors.grey,
+                        onPressed: () {},
+                      )
+                    : IconButton(
+                        icon: Icon(
+                            isPressed ? Icons.favorite : Icons.favorite_border),
+                        color: isPressed
+                            ? Colors.red
+                            : Theme.of(context).iconTheme.color,
+                        onPressed: () async {
+                          if (!isPressed) {
+                            setState(() {
+                              isPressed = true;
+                            });
+                            // await UserSharedPrefernces.saveTextQuote(item);
+                            Utilities.mSnackBar(context, "Quote is liked");
+                          }
+                        },
+                      ),
+                SizedBox(
+                  width: 16.0,
+                ),
+                IconButton(
+                  icon: Icon(Icons.download_outlined),
+                  color: Theme.of(context).iconTheme.color,
+                  onPressed: () async {
+                    TextUtils.takeScreenShot(context, key, false);
+                  },
+                ),
+                SizedBox(
+                  width: 16.0,
+                ),
+                IconButton(
+                  icon: Icon(Icons.share_outlined),
+                  color: Theme.of(context).iconTheme.color,
+                  onPressed: () async {
+                    TextUtils.takeScreenShot(context, key, true);
+                  },
+                ),
+                SizedBox(
+                  width: 16.0,
+                ),
+                (widget.screenName == "text")
+                    ? IconButton(
+                        icon: Icon(!isBookmarkPressed
+                            ? Icons.bookmark_border_outlined
+                            : Icons.bookmark_added),
+                        color: Theme.of(context).iconTheme.color,
+                        onPressed: () {
+                          // Gives error msg, accessing local hidden methods
+                          if (!isBookmarkPressed) {
+                            String newData =
+                                TextQuote.toSerializedData(widget.item);
+                            UserSharedPrefernces.saveTextQuote(newData);
+                            setState(() {
+                              isBookmarkPressed = true;
+                            });
+                            Utilities.mSnackBar(
+                                context, "Quote is bookmarked!");
+                          }
+                        },
+                      )
+                    : IconButton(
+                        icon: Icon(Icons.bookmark_remove),
+                        color: (!isDisabledLove)
+                            ? Theme.of(context).iconTheme.color
+                            : Colors.grey,
+                        onPressed: () {
+                          // Gives error msg, accessing local hidden methods
+                          if (!isDisabledLove) {
+                            String newData =
+                                TextQuote.toSerializedData(widget.item);
+                            UserSharedPrefernces.removeTextQuote(newData);
+                            widget.callbackMethod();
+                          }
+                        },
+                      ),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

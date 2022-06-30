@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/models/categories.dart';
 import 'package:learn_flutter/utils/utilities.dart';
 import 'package:learn_flutter/widgets/image_quote_refresh.dart';
 import 'package:learn_flutter/widgets/text_quote_refresh.dart';
@@ -14,7 +13,19 @@ class CategoryScrollBar extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Container(
-        margin: const EdgeInsets.fromLTRB(7, 10, 0, 0),
+        height: 70,
+        decoration: BoxDecoration(
+          boxShadow: const [
+            BoxShadow(
+                offset: Offset(0.0, 1.5),
+                blurRadius: 2,
+                spreadRadius: -1.9,
+                color: Color(0x33000000)),
+          ],
+          color: Theme.of(context).bottomAppBarColor,
+        ),
+        padding: EdgeInsets.only(left: 10),
+        margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.start,
@@ -26,30 +37,34 @@ class CategoryScrollBar extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     itemCount: cats.length,
                     itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          // print("on tap called");
-                          if (which == "image") {
-                            ImageQuoteRefresh.category.value = cats[index].name;
-                          } else {
-                            TextQuoteRefresh.category.value = cats[index].name;
-                          }
-                        },
-                        child: Column(
-                          children: [
-                            Container(
-                              width: 35.0,
-                              height: 35.0,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: AssetImage(cats[index].image)),
+                      return Container(
+                        margin: EdgeInsets.only(right: 10),
+                        child: InkWell(
+                          onTap: () {
+                            if (which == "image") {
+                              ImageQuoteRefresh.category.value =
+                                  cats[index].name;
+                            } else {
+                              TextQuoteRefresh.category.value =
+                                  cats[index].name;
+                            }
+                          },
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                width: 35.0,
+                                height: 35.0,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  image: DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: AssetImage(cats[index].image)),
+                                ),
                               ),
-                              margin: const EdgeInsets.fromLTRB(0, 0, 12, 0),
-                            ),
-                            Text(cats[index].name.toString().capitalize())
-                          ],
+                              Text(cats[index].name.toString().capitalize()),
+                            ],
+                          ),
                         ),
                       );
                     })),

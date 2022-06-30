@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:learn_flutter/core/navigation_sevice.dart';
-import 'package:learn_flutter/pages/my_test_page.dart';
-import 'package:learn_flutter/pages/second_page.dart';
+import 'package:learn_flutter/pages/show_daily_quotes.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 

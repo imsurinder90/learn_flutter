@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
@@ -11,7 +13,7 @@ import 'package:learn_flutter/core/notification_util.dart';
 import 'package:learn_flutter/pages/favorites_page.dart';
 import 'package:learn_flutter/pages/image_quote_page.dart';
 import 'package:learn_flutter/pages/my_test_page.dart';
-import 'package:learn_flutter/pages/second_page.dart';
+import 'package:learn_flutter/pages/show_daily_quotes.dart';
 import 'package:learn_flutter/pages/settings_page.dart';
 import 'package:learn_flutter/pages/text_quote.dart';
 import 'package:learn_flutter/utils/notifications_utils.dart';
@@ -19,13 +21,12 @@ import 'package:learn_flutter/utils/routes.dart';
 import 'package:learn_flutter/utils/user_shared_pref.dart';
 import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
 import 'package:learn_flutter/utils/utilities.dart';
+import 'package:learn_flutter/theme/themes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-
   await UserSharedPrefernces.init();
-
   runApp(MyApp());
 }
 
@@ -42,11 +43,17 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
+    currentTheme.addListener(() {
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        theme: CustomTheme.lightTheme,
+        darkTheme: CustomTheme.darkTheme,
+        themeMode: currentTheme.currentTheme,
         navigatorKey: NavigationService.instance.navigationKey,
         home: HomePage(),
         routes: {
@@ -97,11 +104,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int currentIndex = 0;
-
   NotificationsUtils nUtils = NotificationsUtils();
-
   bool showDailyNotify = UserSharedPrefernces.getDailyNotify();
+  int currentIndex = 0;
   String? payload;
 
   final screens = [
@@ -114,25 +119,17 @@ class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
-    SchedulerBinding.instance.addPostFrameCallback((_) => mycallback());
-    showDailyQuote();
+    SchedulerBinding.instance.addPostFrameCallback((_) => openDailyQuote());
+    scheduleDailyQuote();
   }
 
-  showDailyQuote() {
+  scheduleDailyQuote() {
     if (showDailyNotify) {
       nUtils.scheduleDailyQuotes();
-      // if (notificationAppLaunchDetails != null) {
-      //   setState(() {
-      //     payload = notificationAppLaunchDetails.payload;
-      //   });
-      // }
-      // setState(() {
-      //   pgPayload = (payload != null) ? payload : "";
-      // });
     }
   }
 
-  mycallback() async {
+  openDailyQuote() async {
     var payload = "";
     FlutterLocalNotificationsPlugin fLNP =
         await nUtils.notificationService.init();
@@ -151,22 +148,6 @@ class _HomePageState extends State<HomePage> {
         return DailyQuotes(payload: payload);
       }), ((route) => route.isFirst));
     }
-
-    // await nUtils.notificationService.init().then((value1) async {
-    //   await value1.getNotificationAppLaunchDetails().then((value) {
-    //     print(value);
-    //     if (value != null) {
-    //       payload = value.payload;
-    //       // setState(() {
-    //       //   payload = value.payload;
-    //       // });
-    //       // payload = value.payload;
-    //     } else {
-    //       payload = "it wa snull";
-    //     }
-    //   });
-    // });
-    // return payload;
   }
 
   @override
@@ -175,17 +156,6 @@ class _HomePageState extends State<HomePage> {
       extendBodyBehindAppBar: true,
       body: SafeArea(
         child: LazyLoadIndexedStack(index: currentIndex, children: screens),
-        // pgPayload.isNotEmpty
-        //     ? DailyQuotes(
-        //         payload: pgPayload,
-        //       )
-        //     : LazyLoadIndexedStack(index: currentIndex, children: screens),
-        // child: (currentIndex != 2)
-        //     ? IndexedStack(
-        //         index: currentIndex,
-        //         children: screens,
-        //       )
-        //     : screens[currentIndex],
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

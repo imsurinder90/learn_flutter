@@ -28,7 +28,7 @@ class _TextQuotePicState extends State<TextQuotePic> {
     return RepaintBoundary(
       key: widget.itemKey,
       child: Card(
-        elevation: 2,
+        elevation: 0,
         semanticContainer: true,
         shadowColor: Colors.black,
         child: Stack(
@@ -36,7 +36,7 @@ class _TextQuotePicState extends State<TextQuotePic> {
           children: [
             Container(
               height: 400,
-              padding: EdgeInsets.fromLTRB(20, 20, 20, 0),
+              padding: EdgeInsets.fromLTRB(20, 20, 20, 20),
               decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topCenter,

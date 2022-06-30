@@ -30,18 +30,21 @@ class TextQuoteListView extends StatelessWidget {
         itemCount: data.length + 1,
         itemBuilder: (context, index) {
           if (index < data.length) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                TextQuotePic(itemKey: renderKeys[index], item: data[index]),
-                TextQuoteBtns(
-                    itemKey: renderKeys[index],
-                    item: data[index],
-                    screenName: screenName,
-                    callbackMethod: callbackMethod)
-              ],
+            return Container(
+              margin: EdgeInsets.only(bottom: 13),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  TextQuotePic(itemKey: renderKeys[index], item: data[index]),
+                  TextQuoteBtns(
+                      itemKey: renderKeys[index],
+                      item: data[index],
+                      screenName: screenName,
+                      callbackMethod: callbackMethod)
+                ],
+              ),
             );
           } else {
             // return Container();

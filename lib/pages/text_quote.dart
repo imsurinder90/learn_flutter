@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:learn_flutter/models/categories.dart';
 import 'package:learn_flutter/widgets/category_scrollbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:learn_flutter/widgets/quotes_app_title.dart';
 import 'package:learn_flutter/widgets/text_quote_refresh.dart';
 
 class TextQuote extends StatefulWidget {
@@ -22,20 +23,16 @@ class _TextQuoteState extends State<TextQuote> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-      Container(
-          alignment: Alignment.topLeft,
-          padding: EdgeInsets.only(top: 10, left: 10, bottom: 0),
-          child: Text("Best Motivation Quotes",
-              style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20))),
-      CategoryScrollBar(
-        cats: TextCategoryModel.cats,
-        which: "text",
-      ),
-      TextQuoteRefresh(),
-    ]);
+    return Container(
+      color: Theme.of(context).bottomAppBarColor,
+      child: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
+        QuotesAppTitle(),
+        CategoryScrollBar(
+          cats: TextCategoryModel.cats,
+          which: "text",
+        ),
+        TextQuoteRefresh(),
+      ]),
+    );
   }
 }
