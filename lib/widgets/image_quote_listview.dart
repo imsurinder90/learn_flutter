@@ -1,9 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/core/image_db.dart';
 import 'package:learn_flutter/widgets/image_quote_btns.dart';
 import 'package:learn_flutter/widgets/image_quote_pic.dart';
-import 'package:learn_flutter/widgets/image_quote_title.dart';
 
 class ImageQuoteListView extends StatelessWidget {
   final data;

@@ -1,7 +1,5 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:learn_flutter/models/text_quote_model.dart';
 import 'package:learn_flutter/widgets/text_quote_btns.dart';
 import 'package:learn_flutter/widgets/text_quote_pic.dart';
 

@@ -13,10 +13,12 @@ class CustomTheme with ChangeNotifier {
 
   static ThemeData get lightTheme {
     return ThemeData(
-      colorScheme: ColorScheme.light(),
+      colorScheme: ColorScheme.light(
+          primary: Color.fromARGB(255, 248, 137, 93), // swipe refresh icon
+          secondary: Colors.white // scroll overflow
+          ),
       primaryColor: Colors.white,
       brightness: Brightness.light,
-      backgroundColor: Colors.redAccent,
       canvasColor: Colors.white,
       // scaffoldBackgroundColor: Colors.purpleAccent,
       textTheme: TextTheme(
@@ -31,9 +33,11 @@ class CustomTheme with ChangeNotifier {
 
   static ThemeData get darkTheme {
     return ThemeData(
-        colorScheme: ColorScheme.dark(),
+        colorScheme: ColorScheme.dark(
+          primary: Color.fromARGB(255, 248, 137, 93), // swipe refresh icon
+          secondary: Colors.grey[850]!, // scroll overflow
+        ),
         primaryColor: Colors.black,
-        backgroundColor: Colors.grey,
         scaffoldBackgroundColor: Colors.grey.shade600,
         textTheme: TextTheme(
           headline1: TextStyle(color: Colors.white),
@@ -41,12 +45,21 @@ class CustomTheme with ChangeNotifier {
           bodyText1: TextStyle(color: Colors.white),
           bodyText2: TextStyle(color: Colors.white),
         ),
-        iconTheme: IconThemeData(color: Colors.white));
+        iconTheme: IconThemeData(color: Colors.grey));
   }
 }
 
 // access with Theme.of(context).colorScheme.appBarBgColor
 extension ColorSchemeExtension on ColorScheme {
   Color get appBarBgColor =>
-      brightness == Brightness.light ? Colors.blueGrey : Colors.grey[800]!;
+      brightness == Brightness.light ? Colors.blueGrey : Colors.grey[850]!;
+  Color get tabBarIndicatorColor =>
+      brightness == Brightness.light ? Color(0xffF15C22) : Color(0xffF15C22);
+  Color get bottomNavBarColor => brightness == Brightness.light
+      ? Color.fromARGB(255, 248, 137, 93)
+      : Color.fromARGB(255, 248, 137, 93);
+  Color get snackBarTextColor =>
+      brightness == Brightness.light ? Colors.white : Colors.black;
+  Color get snackBarBgColor =>
+      brightness == Brightness.light ? Colors.black : Colors.white;
 }

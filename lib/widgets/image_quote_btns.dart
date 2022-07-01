@@ -26,6 +26,7 @@ class ImageQuoteBtns extends StatefulWidget {
 class _ImageQuoteBtnsState extends State<ImageQuoteBtns> {
   bool isPressed = false;
   bool isBookmarkPressed = false;
+  static String pictureBookmarkedMsg = "Picture is bookmarked!";
 
   @override
   Widget build(BuildContext context) {
@@ -96,8 +97,7 @@ class _ImageQuoteBtnsState extends State<ImageQuoteBtns> {
                             setState(() {
                               isBookmarkPressed = true;
                             });
-                            Utilities.mSnackBar(
-                                context, "Picture is bookmarked!");
+                            Utilities.mSnackBar(context, pictureBookmarkedMsg);
                           }
                         },
                       )

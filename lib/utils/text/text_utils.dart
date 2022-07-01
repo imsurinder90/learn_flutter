@@ -13,6 +13,8 @@ import 'package:share_plus/share_plus.dart';
 
 class TextUtils {
   static final Dio dio = Dio();
+  static String quoteSavedToMedia = "Image downloaded!";
+  static String preparingToShareQuote = "Preparing to share Quote";
 
   static takeScreenShot(context, mykey, bool save) async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
@@ -55,12 +57,12 @@ class TextUtils {
               Uint8List pngBytes = byteData.buffer.asUint8List();
               saveFile.writeAsBytes(pngBytes);
               if (!save) {
-                Utilities.mSnackBar(context, "Quote saved to media");
+                Utilities.mSnackBar(context, quoteSavedToMedia);
               }
             }
           }
           if (save) {
-            Utilities.mSnackBar(context, "Preparing to share Quote");
+            Utilities.mSnackBar(context, preparingToShareQuote);
             await Future.delayed(Duration(seconds: 1));
             await Share.shareFiles([saveFile.path]);
           }

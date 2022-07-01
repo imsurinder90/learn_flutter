@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter/models/text_quote_model.dart';
-import 'package:learn_flutter/utils/gradient_colors.dart';
-import 'package:learn_flutter/utils/text/text_utils.dart';
-import 'package:learn_flutter/utils/user_shared_pref.dart';
 import 'package:learn_flutter/utils/utilities.dart';
 
 class TextQuotePic extends StatefulWidget {

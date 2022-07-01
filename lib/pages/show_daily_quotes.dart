@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/models/text_quote_model.dart';
+import 'package:learn_flutter/theme/themes.dart';
 import 'package:learn_flutter/utils/gradient_colors.dart';
 import 'package:learn_flutter/utils/utilities.dart';
 import 'package:learn_flutter/widgets/text_quote_btns.dart';
@@ -11,14 +12,20 @@ class DailyQuotes extends StatelessWidget {
   List<GlobalKey> renderKeys = List<GlobalKey<FormState>>.generate(
       1, (i) => GlobalKey<FormState>(debugLabel: ' _quote_details_Key'));
 
+  static String showDailyQuotesTitle = "Daily Motivational Quotes";
+
   void callbackMethod() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Daily Motivational Quotes")),
+        appBar: AppBar(
+          title: Text(showDailyQuotesTitle),
+          backgroundColor: Theme.of(context).colorScheme.appBarBgColor,
+        ),
         body: SafeArea(
             child: Container(
+          color: Theme.of(context).bottomAppBarColor,
           margin: EdgeInsets.all(0),
           padding: EdgeInsets.all(0),
           height: MediaQuery.of(context).size.height,

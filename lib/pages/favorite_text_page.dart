@@ -14,6 +14,7 @@ class _FavTextPageState extends State<FavTextPage> {
   final controller = ScrollController();
 
   bool hasNext = false;
+  static String noTextQuotesStr = "No quotes found.";
 
   List<TextQuote> data = [];
   List<GlobalKey> renderKeys = [];
@@ -49,7 +50,7 @@ class _FavTextPageState extends State<FavTextPage> {
       );
     } else {
       return Center(
-        child: Text("No quotes found."),
+        child: Text(noTextQuotesStr),
       );
     }
   }

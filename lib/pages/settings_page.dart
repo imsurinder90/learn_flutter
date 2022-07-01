@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:learn_flutter/theme/themes.dart';
 import 'package:learn_flutter/utils/user_shared_pref.dart';
 import 'package:learn_flutter/utils/utilities.dart';
@@ -13,13 +12,21 @@ class SettingsPage extends StatefulWidget {
 
 class _SettingsPageState extends State<SettingsPage> {
   bool _isToggled = UserSharedPrefernces.getDailyNotify();
+  static String pageTitle = "Settings";
+  static String sendFeedback = 'Send feedback';
+  static String dailyQuotesReminder = 'Daily Quotes Reminder';
+  static String dailyQuotesDetails =
+      'Helps you to keep energized and motivated throughout the day';
+  static String rateOnPlayStore = 'Rate on Play Store';
+  static String rateOnPlayStoreDetails =
+      'Your feedback and rating will be helpful to keep us improving the app and a boost in the motivation to deliver best.';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.appBarBgColor,
-        title: Text("Settings"),
+        title: Text(pageTitle),
         automaticallyImplyLeading: false,
         elevation: 0,
       ),
@@ -40,9 +47,8 @@ class _SettingsPageState extends State<SettingsPage> {
                           : Icons.notifications,
                       color: Theme.of(context).iconTheme.color,
                     ),
-                    title: Text('Daily Quotes Reminder'),
-                    subtitle: Text(
-                        'Helps you to keep energized and motivated throughout the day'),
+                    title: Text(dailyQuotesReminder),
+                    subtitle: Text(dailyQuotesDetails),
                     value: _isToggled,
                     onChanged: (bool value) {
                       UserSharedPrefernces.setDailyNotify(value);
@@ -61,9 +67,8 @@ class _SettingsPageState extends State<SettingsPage> {
                   Icons.star,
                   color: Theme.of(context).iconTheme.color,
                 ),
-                title: Text('Rate on Play Store'),
-                subtitle: Text(
-                    'Your feedback and rating will be helpful to keep us improving the app and a boost in the motivation to deliver best.'),
+                title: Text(rateOnPlayStore),
+                subtitle: Text(rateOnPlayStoreDetails),
                 trailing: Icon(
                   Icons.link,
                   color: Theme.of(context).iconTheme.color,
@@ -85,7 +90,7 @@ class _SettingsPageState extends State<SettingsPage> {
                   Icons.mail,
                   color: Theme.of(context).iconTheme.color,
                 ),
-                title: Text('Send feedback'),
+                title: Text(sendFeedback),
                 trailing: Icon(
                   Icons.link,
                   color: Theme.of(context).iconTheme.color,

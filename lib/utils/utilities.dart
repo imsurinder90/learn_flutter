@@ -4,10 +4,15 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
+import 'package:learn_flutter/theme/themes.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Utilities {
+  static String emailId = 'srana977@gmail.com';
+  static String appPackageName = "net.sumitk.quotesmeditation";
+  static String appUrl = "More: https://play.google.com/store/apps/details?id=";
+
   static int getRandomNo() {
     var random = Random();
     return random.nextInt(pow(2, 31).toInt() - 1);
@@ -31,22 +36,20 @@ class Utilities {
   static void rateOnPlayStore() async {
     PackageInfo packageInfo = await PackageInfo.fromPlatform();
     // String appPackageName = packageInfo.appName;
-    String appPackageName = "net.sumitk.quotesmeditation";
+
     try {
       launchUrl(Uri.parse("market://details?id=$appPackageName"));
     } on PlatformException catch (e) {
-      launchUrl(Uri.parse(
-          "https://play.google.com/store/apps/details?id=$appPackageName"));
+      launchUrl(Uri.parse("$appUrl$appPackageName"));
     } finally {
-      launchUrl(Uri.parse(
-          "https://play.google.com/store/apps/details?id=$appPackageName"));
+      launchUrl(Uri.parse("$appUrl$appPackageName"));
     }
   }
 
   static void sendEmail() async {
     final Uri params = Uri(
       scheme: 'mailto',
-      path: 'srana977@gmail.com',
+      path: emailId,
     );
     String url = params.toString();
     if (await canLaunchUrl(params)) {
@@ -60,16 +63,20 @@ class Utilities {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
       behavior: SnackBarBehavior.floating,
-      backgroundColor: ui.Color.fromARGB(255, 39, 34, 34),
+      backgroundColor: Theme.of(context).colorScheme.snackBarBgColor,
       action: SnackBarAction(
-        textColor: Colors.white,
+        textColor: Theme.of(context).colorScheme.snackBarTextColor,
         label: 'X',
         onPressed: () {},
       ),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(8),
       ),
-      content: Text(msg),
+      content: Text(
+        msg,
+        style:
+            TextStyle(color: Theme.of(context).colorScheme.snackBarTextColor),
+      ),
       duration: Duration(seconds: 1),
     ));
   }

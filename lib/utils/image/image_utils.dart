@@ -1,4 +1,4 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
+// ignore_for_file: public_member_api_docs, sort_constructors_first, unnecessary_brace_in_string_interps
 import 'dart:io';
 
 import 'package:dio/dio.dart';
@@ -13,6 +13,8 @@ import 'package:learn_flutter/utils/utilities.dart';
 class ImageUtils {
   ImageUtils();
   static final Dio dio = Dio();
+  static String imageDownloadedMsg = "Image downloaded!";
+  static String appUrl = "More: https://play.google.com/store/apps/details?id=";
 
   static Future<bool> saveImage(String url, String fileName) async {
     Directory directory;
@@ -77,7 +79,7 @@ class ImageUtils {
     bool downloaded = await saveImage(url, "$filename.jpeg");
     if (downloaded) {
       // ignore: use_build_context_synchronously
-      Utilities.mSnackBar(context, "Image downloaded!");
+      Utilities.mSnackBar(context, imageDownloadedMsg);
       print("File Downloaded");
     } else {
       print("Problem Downloading File");
@@ -93,8 +95,7 @@ class ImageUtils {
     final directory = await getTemporaryDirectory();
     final path = '${directory.path}/image_quote.jpeg';
     File(path).writeAsBytesSync(bytes);
-    final text =
-        "More: https://play.google.com/store/apps/details?id=${packageName}";
+    final text = "${appUrl}${packageName}";
     await Share.shareFiles([path], text: text);
   }
 }

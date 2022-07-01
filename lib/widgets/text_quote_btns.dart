@@ -27,6 +27,8 @@ class _TextQuoteBtnsState extends State<TextQuoteBtns> {
   bool isPressed = false;
   bool isBookmarkPressed = false;
   bool isDisabledLove = false;
+  static String quoteIsBookmarkedMsg = "Quote is bookmarked!";
+  static String quoteIsLiked = "Quote is liked";
 
   @override
   Widget build(BuildContext context) {
@@ -74,7 +76,7 @@ class _TextQuoteBtnsState extends State<TextQuoteBtns> {
                               isPressed = true;
                             });
                             // await UserSharedPrefernces.saveTextQuote(item);
-                            Utilities.mSnackBar(context, "Quote is liked");
+                            Utilities.mSnackBar(context, quoteIsLiked);
                           }
                         },
                       ),
@@ -116,8 +118,7 @@ class _TextQuoteBtnsState extends State<TextQuoteBtns> {
                             setState(() {
                               isBookmarkPressed = true;
                             });
-                            Utilities.mSnackBar(
-                                context, "Quote is bookmarked!");
+                            Utilities.mSnackBar(context, quoteIsBookmarkedMsg);
                           }
                         },
                       )

@@ -22,6 +22,7 @@ class _TextQuoteRefreshState extends State<TextQuoteRefresh> {
   bool hasNext = true;
   bool isLoading = false;
   List<GlobalKey> renderKeys = [];
+  static String textQuotes = "textquotes";
 
   @override
   void setState(fn) {
@@ -102,7 +103,7 @@ class _TextQuoteRefreshState extends State<TextQuoteRefresh> {
     QuerySnapshot<Map<String, dynamic>> snapshot;
     final List<TextQuote> mdocs;
 
-    CollectionReference ref = _db.collection("textquotes");
+    CollectionReference ref = _db.collection(textQuotes);
     snapshot = isLoading
         ? await ref.limit(docLimit).get() as QuerySnapshot<Map<String, dynamic>>
         : await ref.startAfterDocument(lastSnap).limit(docLimit).get()
@@ -129,7 +130,7 @@ class _TextQuoteRefreshState extends State<TextQuoteRefresh> {
     final List<TextQuote> mdocs;
     String textCat = mycategory.value.toLowerCase();
 
-    CollectionReference ref = _db.collection("textquotes");
+    CollectionReference ref = _db.collection(textQuotes);
     snapshot = isLoading
         ? await ref.where('category', isEqualTo: textCat).limit(docLimit).get()
             as QuerySnapshot<Map<String, dynamic>>

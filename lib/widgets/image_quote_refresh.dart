@@ -22,6 +22,7 @@ class _ImageQuoteRefreshState extends State<ImageQuoteRefresh> {
   int docLimit = 9;
   bool hasNext = true;
   bool isLoading = false;
+  static String imageQuotes = "imagequotes";
 
   @override
   void setState(fn) {
@@ -89,7 +90,7 @@ class _ImageQuoteRefreshState extends State<ImageQuoteRefresh> {
     QuerySnapshot<Map<String, dynamic>> snapshot;
     final List<ImgQuote> mdocs;
 
-    CollectionReference ref = _db.collection("imagequotes");
+    CollectionReference ref = _db.collection(imageQuotes);
     snapshot = isLoading
         ? await ref.limit(docLimit).get() as QuerySnapshot<Map<String, dynamic>>
         : await ref.startAfterDocument(lastSnap).limit(docLimit).get()
@@ -116,7 +117,7 @@ class _ImageQuoteRefreshState extends State<ImageQuoteRefresh> {
     final List<ImgQuote> mdocs;
     String imgCat = mycategory.value.toLowerCase();
 
-    CollectionReference ref = _db.collection("imagequotes");
+    CollectionReference ref = _db.collection(imageQuotes);
     snapshot = isLoading
         ? await ref.where('category', isEqualTo: imgCat).limit(docLimit).get()
             as QuerySnapshot<Map<String, dynamic>>

@@ -14,16 +14,13 @@ class CategoryScrollBar extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return Container(
         height: 70,
-        decoration: BoxDecoration(
-          boxShadow: const [
-            BoxShadow(
-                offset: Offset(0.0, 1.5),
-                blurRadius: 2,
-                spreadRadius: -1.9,
-                color: Color(0x33000000)),
-          ],
-          color: Theme.of(context).bottomAppBarColor,
-        ),
+        decoration: BoxDecoration(boxShadow: const [
+          BoxShadow(
+              offset: Offset(0.0, 1.5),
+              blurRadius: 2,
+              spreadRadius: -1.9,
+              color: Color(0x33000000)),
+        ], color: Theme.of(context).canvasColor),
         padding: EdgeInsets.only(left: 10),
         margin: const EdgeInsets.fromLTRB(0, 0, 0, 0),
         child: Column(

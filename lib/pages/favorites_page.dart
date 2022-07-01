@@ -14,6 +14,10 @@ class FavoritePage extends StatefulWidget {
 class _FavoritePageState extends State<FavoritePage>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+  static String tab1Title = "Pictures";
+  static String tab2Title = "Quotes";
+  static String assetPic = "assets/images/gallery.png";
+  static String assetQuote = "assets/images/quote.png";
 
   @override
   void initState() {
@@ -29,92 +33,93 @@ class _FavoritePageState extends State<FavoritePage>
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Column(
-          children: [
-            Container(
-              color: Theme.of(context).colorScheme.appBarBgColor,
-              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
-              padding: EdgeInsets.symmetric(
-                horizontal: 15,
-              ),
-              child: TabBar(
-                controller: tabController,
-                tabs: [
-                  Tab(
-                    child: Row(children: [
-                      Container(
-                        width: 24,
-                        height: 24,
-                        margin: EdgeInsets.only(right: 5),
-                        child: Image.asset(
-                          "assets/images/gallery.png",
-                          width: 24,
-                          height: 24,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        "Pictures",
-                        style: GoogleFonts.lato(
-                          textStyle: TextStyle(color: Colors.white),
-                          fontSize: 16,
-                          shadows: [
-                            Shadow(
-                              color: Colors.black54.withOpacity(0.1),
-                              offset: Offset(1, 1),
-                              blurRadius: 0.2,
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
-                  ),
-                  Tab(
-                    child: Row(children: [
-                      Container(
-                        width: 24,
-                        height: 24,
-                        margin: EdgeInsets.only(right: 5),
-                        child: Image.asset(
-                          "assets/images/quote.png",
-                          width: 24,
-                          height: 24,
-                          color: Colors.white,
-                        ),
-                      ),
-                      Text(
-                        "Quotes",
-                        style: GoogleFonts.lato(
-                          textStyle: TextStyle(color: Colors.white),
-                          fontSize: 16,
-                          shadows: [
-                            Shadow(
-                              color: Colors.black54.withOpacity(0.1),
-                              offset: Offset(1, 1),
-                              blurRadius: 0.2,
-                            ),
-                          ],
-                        ),
-                      )
-                    ]),
-                  ),
-                ],
-              ),
+    return Container(
+      color: Theme.of(context).bottomAppBarColor,
+      child: Column(
+        children: [
+          Container(
+            color: Theme.of(context).colorScheme.appBarBgColor,
+            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
+            padding: EdgeInsets.symmetric(
+              horizontal: 15,
             ),
-          ],
-        ),
-        Expanded(
-          child: Container(
-            color: Theme.of(context).bottomAppBarColor,
-            child: TabBarView(
+            child: TabBar(
+              indicatorColor:
+                  Theme.of(context).colorScheme.tabBarIndicatorColor,
               controller: tabController,
-              children: [FavImagePage(), FavTextPage()],
+              tabs: [
+                Tab(
+                  child: Row(children: [
+                    Container(
+                      width: 24,
+                      height: 24,
+                      margin: EdgeInsets.only(right: 5),
+                      child: Image.asset(
+                        assetPic,
+                        width: 24,
+                        height: 24,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      tab1Title,
+                      style: GoogleFonts.lato(
+                        textStyle: TextStyle(color: Colors.white),
+                        fontSize: 16,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black54.withOpacity(0.1),
+                            offset: Offset(1, 1),
+                            blurRadius: 0.2,
+                          ),
+                        ],
+                      ),
+                    )
+                  ]),
+                ),
+                Tab(
+                  child: Row(children: [
+                    Container(
+                      width: 24,
+                      height: 24,
+                      margin: EdgeInsets.only(right: 5),
+                      child: Image.asset(
+                        assetQuote,
+                        width: 24,
+                        height: 24,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      tab2Title,
+                      style: GoogleFonts.lato(
+                        textStyle: TextStyle(color: Colors.white),
+                        fontSize: 16,
+                        shadows: [
+                          Shadow(
+                            color: Colors.black54.withOpacity(0.1),
+                            offset: Offset(1, 1),
+                            blurRadius: 0.2,
+                          ),
+                        ],
+                      ),
+                    )
+                  ]),
+                ),
+              ],
             ),
           ),
-        )
-      ],
+          Expanded(
+            child: Container(
+              color: Theme.of(context).bottomAppBarColor,
+              child: TabBarView(
+                controller: tabController,
+                children: [FavImagePage(), FavTextPage()],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

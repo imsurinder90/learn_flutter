@@ -1,18 +1,10 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:learn_flutter/core/navigation_sevice.dart';
-import 'package:learn_flutter/core/notification_service.dart';
-import 'package:learn_flutter/core/notification_util.dart';
 import 'package:learn_flutter/pages/favorites_page.dart';
 import 'package:learn_flutter/pages/image_quote_page.dart';
-import 'package:learn_flutter/pages/my_test_page.dart';
 import 'package:learn_flutter/pages/show_daily_quotes.dart';
 import 'package:learn_flutter/pages/settings_page.dart';
 import 'package:learn_flutter/pages/text_quote.dart';
@@ -20,7 +12,6 @@ import 'package:learn_flutter/utils/notifications_utils.dart';
 import 'package:learn_flutter/utils/routes.dart';
 import 'package:learn_flutter/utils/user_shared_pref.dart';
 import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
-import 'package:learn_flutter/utils/utilities.dart';
 import 'package:learn_flutter/theme/themes.dart';
 
 Future<void> main() async {
@@ -109,6 +100,11 @@ class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
   String? payload;
 
+  static String home = "Home";
+  static String textQuote = "Text Quote";
+  static String bookmarked = "Bookmarked";
+  static String settings = "Settings";
+
   final screens = [
     ImageQuotePage(),
     TextQuote(),
@@ -154,31 +150,35 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
+      backgroundColor: Theme.of(context).canvasColor,
       body: SafeArea(
         child: LazyLoadIndexedStack(index: currentIndex, children: screens),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        selectedIconTheme: IconThemeData(
+            color: Theme.of(context).colorScheme.bottomNavBarColor),
+        selectedItemColor: Theme.of(context).colorScheme.bottomNavBarColor,
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
         onTap: (index) => setState(() {
           currentIndex = index;
         }),
-        items: const <BottomNavigationBarItem>[
+        items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: home,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.format_quote),
-            label: 'Text Quote',
+            label: textQuote,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.bookmark_rounded),
-            label: 'Bookmarked',
+            label: bookmarked,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),
-            label: 'Settings',
+            label: settings,
           ),
         ],
       ),
