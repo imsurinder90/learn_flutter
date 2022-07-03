@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_literals_to_create_immutables
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:learn_flutter/models/categories.dart';
+import 'package:learn_flutter/theme/themes.dart';
 import 'package:learn_flutter/widgets/category_scrollbar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:learn_flutter/widgets/quotes_app_title.dart';

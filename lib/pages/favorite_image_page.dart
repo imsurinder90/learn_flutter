@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/models/fav_img_model.dart';
 import 'package:learn_flutter/models/image_quotes.dart';
 import 'package:learn_flutter/utils/user_shared_pref.dart';
 import 'package:learn_flutter/widgets/image_quote_listview.dart';
 import 'package:learn_flutter/widgets/image_quote_btns.dart';
+import 'package:provider/provider.dart';
 
 class FavImagePage extends StatefulWidget {
   FavImagePage({Key? key}) : super(key: key);
@@ -20,31 +22,24 @@ class _FavImagePageState extends State<FavImagePage> {
   @override
   void initState() {
     super.initState();
-    getImgData();
-  }
-
-  List<ImgQuote> getImgData() {
-    List<String> myData = UserSharedPrefernces.getImgQuote();
-    setState(() {
-      data = myData.map((el) => ImgQuote.toDeserializeData(el)).toList();
-    });
-    return data;
   }
 
   @override
   Widget build(BuildContext context) {
-    if (data.isNotEmpty) {
-      return ImageQuoteListView(
-        data: data,
-        hasNext: hasNext,
-        controller: controller,
-        screenName: "fav",
-        callbackMethod: getImgData,
-      );
-    } else {
-      return Center(
-        child: Text(noPicQuotesStr),
-      );
-    }
+    return Consumer<FavImgModel>(builder: (context, modelObj, _) {
+      var data = modelObj.items;
+      if (data.isNotEmpty) {
+        return ImageQuoteListView(
+          data: data,
+          hasNext: hasNext,
+          controller: controller,
+          screenName: "fav",
+        );
+      } else {
+        return Center(
+          child: Text(noPicQuotesStr),
+        );
+      }
+    });
   }
 }

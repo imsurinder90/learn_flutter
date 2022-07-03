@@ -8,15 +8,13 @@ class ImageQuoteListView extends StatelessWidget {
   final bool hasNext;
   final controller;
   final String screenName;
-  final Function callbackMethod;
-  const ImageQuoteListView(
-      {Key? key,
-      required this.data,
-      required this.hasNext,
-      required this.controller,
-      required this.screenName,
-      required this.callbackMethod})
-      : super(key: key);
+  const ImageQuoteListView({
+    Key? key,
+    required this.data,
+    required this.hasNext,
+    required this.controller,
+    required this.screenName,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,8 +48,7 @@ class ImageQuoteListView extends StatelessWidget {
                             data: data[index],
                             fn: ImageFireStoreDB.incrementLikes,
                             qctx: context,
-                            screenName: screenName,
-                            callbackMethod: callbackMethod),
+                            screenName: screenName),
                       ],
                     ),
                   ),

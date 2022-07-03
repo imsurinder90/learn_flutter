@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 CustomTheme currentTheme = CustomTheme();
 
@@ -47,6 +48,36 @@ class CustomTheme with ChangeNotifier {
         ),
         iconTheme: IconThemeData(color: Colors.grey));
   }
+
+  switchStatusBarStyle(context, index) {
+    switch (index) {
+      case 0:
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            statusBarColor: Theme.of(context).colorScheme.statusBarPg1BgColor,
+            statusBarIconBrightness:
+                Theme.of(context).colorScheme.statusBarPg1Brightness));
+        break;
+      case 1:
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            statusBarColor: Theme.of(context).colorScheme.statusBarPg1BgColor,
+            statusBarIconBrightness:
+                Theme.of(context).colorScheme.statusBarPg1Brightness));
+        break;
+      case 2:
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            statusBarColor: Theme.of(context).colorScheme.statusBarPg3BgColor,
+            statusBarIconBrightness:
+                Theme.of(context).colorScheme.statusBarPg1Brightness));
+        break;
+      case 3:
+        SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+            statusBarColor: Theme.of(context).colorScheme.statusBarPg3BgColor,
+            statusBarIconBrightness:
+                Theme.of(context).colorScheme.statusBarPg1Brightness));
+        break;
+      default:
+    }
+  }
 }
 
 // access with Theme.of(context).colorScheme.appBarBgColor
@@ -62,4 +93,13 @@ extension ColorSchemeExtension on ColorScheme {
       brightness == Brightness.light ? Colors.white : Colors.black;
   Color get snackBarBgColor =>
       brightness == Brightness.light ? Colors.black : Colors.white;
+
+  // colors for status bar
+  Color get statusBarPg1BgColor =>
+      brightness == Brightness.light ? Colors.white : Colors.grey[850]!;
+  // colors for status bar
+  Brightness get statusBarPg1Brightness =>
+      brightness == Brightness.light ? Brightness.dark : Brightness.light;
+  Color get statusBarPg3BgColor =>
+      brightness == Brightness.light ? Colors.blueGrey : Colors.grey[850]!;
 }

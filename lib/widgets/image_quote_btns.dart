@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:learn_flutter/models/fav_img_model.dart';
 import 'package:learn_flutter/models/image_quotes.dart';
 import 'package:learn_flutter/utils/image/image_utils.dart';
 import 'package:learn_flutter/utils/user_shared_pref.dart';
 import 'package:learn_flutter/utils/utilities.dart';
+import 'package:provider/provider.dart';
 
 class ImageQuoteBtns extends StatefulWidget {
   dynamic data;
   Function fn;
   BuildContext qctx;
   String screenName;
-  Function callbackMethod;
   ImageQuoteBtns(
       {Key? key,
       required this.data,
       required this.fn,
       required this.qctx,
-      required this.screenName,
-      required this.callbackMethod})
+      required this.screenName})
       : super(key: key);
 
   @override
@@ -91,6 +91,14 @@ class _ImageQuoteBtnsState extends State<ImageQuoteBtns> {
                         onPressed: () {
                           // Gives error msg, accessing local hidden methods
                           if (!isBookmarkPressed) {
+                            var mdata = widget.data;
+                            Provider.of<FavImgModel>(context, listen: false)
+                                .add(ImgQuote(
+                                    id: mdata.id,
+                                    category: mdata.category,
+                                    image: mdata.image,
+                                    likes: mdata.likes));
+
                             String newData =
                                 ImgQuote.toSerializedData(widget.data);
                             UserSharedPrefernces.saveImgQuote(newData);
@@ -104,12 +112,18 @@ class _ImageQuoteBtnsState extends State<ImageQuoteBtns> {
                     : IconButton(
                         icon: Icon(Icons.bookmark_remove),
                         color: Theme.of(context).iconTheme.color,
-                        onPressed: () async {
+                        onPressed: () {
                           // Gives error msg, accessing local hidden methods
-                          String newData =
-                              ImgQuote.toSerializedData(widget.data);
-                          await UserSharedPrefernces.removeImgQuote(newData);
-                          widget.callbackMethod();
+                          var mdata = widget.data;
+                          String newData = ImgQuote.toSerializedData(mdata);
+                          UserSharedPrefernces.removeImgQuote(newData);
+
+                          Provider.of<FavImgModel>(context, listen: false)
+                              .remove(ImgQuote(
+                                  id: mdata.id,
+                                  category: mdata.category,
+                                  image: mdata.image,
+                                  likes: mdata.likes));
                         },
                       ),
               ],

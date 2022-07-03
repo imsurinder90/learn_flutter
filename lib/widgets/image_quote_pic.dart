@@ -7,6 +7,7 @@ class ImageQuotePic extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // use this, if error: https://stackoverflow.com/questions/55879550/how-to-fix-httpexception-connection-closed-before-full-header-was-received
     return Container(
       // color: Color.fromARGB(255, 192, 192, 192),
       margin: EdgeInsets.only(bottom: 46),

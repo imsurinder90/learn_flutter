@@ -104,8 +104,12 @@ class _TextQuoteRefreshState extends State<TextQuoteRefresh> {
     final List<TextQuote> mdocs;
 
     CollectionReference ref = _db.collection(textQuotes);
+    var key = ref.doc().id;
     snapshot = isLoading
-        ? await ref.limit(docLimit).get() as QuerySnapshot<Map<String, dynamic>>
+        ? await ref
+            .where(FieldPath.documentId, isGreaterThanOrEqualTo: key)
+            .limit(docLimit)
+            .get() as QuerySnapshot<Map<String, dynamic>>
         : await ref.startAfterDocument(lastSnap).limit(docLimit).get()
             as QuerySnapshot<Map<String, dynamic>>;
     mdocs = (snapshot.docs.isNotEmpty)
@@ -131,9 +135,13 @@ class _TextQuoteRefreshState extends State<TextQuoteRefresh> {
     String textCat = mycategory.value.toLowerCase();
 
     CollectionReference ref = _db.collection(textQuotes);
+    var key = ref.doc().id;
     snapshot = isLoading
-        ? await ref.where('category', isEqualTo: textCat).limit(docLimit).get()
-            as QuerySnapshot<Map<String, dynamic>>
+        ? await ref
+            .where('category', isEqualTo: textCat)
+            .where(FieldPath.documentId, isGreaterThanOrEqualTo: key)
+            .limit(docLimit)
+            .get() as QuerySnapshot<Map<String, dynamic>>
         : await ref
             .where('category', isEqualTo: textCat)
             .startAfterDocument(lastSnap)

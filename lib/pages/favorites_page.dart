@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:learn_flutter/models/fav_img_model.dart';
 import 'package:learn_flutter/pages/favorite_image_page.dart';
 import 'package:learn_flutter/pages/favorite_text_page.dart';
 import 'package:learn_flutter/theme/themes.dart';
+import 'package:provider/provider.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -110,14 +112,13 @@ class _FavoritePageState extends State<FavoritePage>
             ),
           ),
           Expanded(
-            child: Container(
-              color: Theme.of(context).bottomAppBarColor,
-              child: TabBarView(
-                controller: tabController,
-                children: [FavImagePage(), FavTextPage()],
-              ),
+              child: Container(
+            color: Theme.of(context).bottomAppBarColor,
+            child: TabBarView(
+              controller: tabController,
+              children: [FavImagePage(), FavTextPage()],
             ),
-          )
+          )),
         ],
       ),
     );

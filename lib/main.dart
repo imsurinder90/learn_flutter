@@ -1,18 +1,22 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:learn_flutter/core/navigation_sevice.dart';
+import 'package:learn_flutter/models/fav_img_model.dart';
+import 'package:learn_flutter/models/image_quotes.dart';
 import 'package:learn_flutter/pages/favorites_page.dart';
 import 'package:learn_flutter/pages/image_quote_page.dart';
 import 'package:learn_flutter/pages/show_daily_quotes.dart';
 import 'package:learn_flutter/pages/settings_page.dart';
-import 'package:learn_flutter/pages/text_quote.dart';
+import 'package:learn_flutter/pages/text_quote_page.dart';
 import 'package:learn_flutter/utils/notifications_utils.dart';
 import 'package:learn_flutter/utils/routes.dart';
 import 'package:learn_flutter/utils/user_shared_pref.dart';
 import 'package:lazy_load_indexed_stack/lazy_load_indexed_stack.dart';
 import 'package:learn_flutter/theme/themes.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,32 +34,52 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   NavigationService nService = NavigationService();
+  FavImgModel favImgModel = FavImgModel();
 
   @override
   void initState() {
     super.initState();
+    getImgData();
     currentTheme.addListener(() {
-      setState(() {});
+      setState(() {
+        (currentTheme.currentTheme == ThemeMode.dark)
+            ? SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                statusBarColor: Colors.grey[850]!,
+                statusBarIconBrightness: Brightness.light))
+            : SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+                statusBarColor: Colors.white,
+                statusBarIconBrightness: Brightness.dark));
+      });
     });
+  }
+
+  getImgData() {
+    List<String> myData = UserSharedPrefernces.getImgQuote();
+    favImgModel.items =
+        myData.map((el) => ImgQuote.toDeserializeData(el)).toList();
   }
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: CustomTheme.lightTheme,
-        darkTheme: CustomTheme.darkTheme,
-        themeMode: currentTheme.currentTheme,
-        navigatorKey: NavigationService.instance.navigationKey,
-        home: HomePage(),
-        routes: {
-          MyRoutes.imageQuoteRoute: (context) => ImageQuotePage(),
-          MyRoutes.textQuoteRoute: (context) => TextQuote(),
-          MyRoutes.favQuoteRoute: (context) => FavoritePage(),
-          MyRoutes.dailyQuoteRoute: (context) => DailyQuotes(
-                payload:
-                    "There is a road from the eye to the heart that does not go through the intellect.",
-              ),
-        });
+    return ChangeNotifierProvider(
+      create: (context) => favImgModel,
+      child: MaterialApp(
+          theme: CustomTheme.lightTheme,
+          darkTheme: CustomTheme.darkTheme,
+          themeMode: currentTheme.currentTheme,
+          navigatorKey: NavigationService.instance.navigationKey,
+          home: HomePage(),
+          debugShowCheckedModeBanner: false,
+          routes: {
+            MyRoutes.imageQuoteRoute: (context) => ImageQuotePage(),
+            MyRoutes.textQuoteRoute: (context) => TextQuote(),
+            MyRoutes.favQuoteRoute: (context) => FavoritePage(),
+            MyRoutes.dailyQuoteRoute: (context) => DailyQuotes(
+                  payload:
+                      "There is a road from the eye to the heart that does not go through the intellect.",
+                ),
+          }),
+    );
     // return MaterialApp(
     //   // navigatorKey: NavigationService.instance.navigationKey,
     //   // home: DestinationScreen(),
@@ -160,9 +184,14 @@ class _HomePageState extends State<HomePage> {
         selectedItemColor: Theme.of(context).colorScheme.bottomNavBarColor,
         type: BottomNavigationBarType.fixed,
         currentIndex: currentIndex,
-        onTap: (index) => setState(() {
-          currentIndex = index;
-        }),
+        onTap: (index) {
+          // if (index == 2 || index == 3) {
+          currentTheme.switchStatusBarStyle(context, index);
+          // }
+          setState(() {
+            currentIndex = index;
+          });
+        },
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
@@ -185,3 +214,35 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+
+
+// import 'package:flutter/material.dart';
+// import 'package:learn_flutter/models/cart_model.dart';
+// import 'package:learn_flutter/pages/mycatalog.dart';
+// import 'package:provider/provider.dart';
+
+// Future<void> main() async {
+//   runApp(
+//     MyApp(),
+//   );
+// }
+
+// class MyApp extends StatefulWidget {
+//   const MyApp({Key? key}) : super(key: key);
+
+//   @override
+//   State<MyApp> createState() => _MyAppState();
+// }
+
+// class _MyAppState extends State<MyApp> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return ChangeNotifierProvider(
+//       create: (context) => CartModel(),
+//       child: MaterialApp(
+//         home: MyCatalog(),
+//       ),
+//     );
+//   }
+// }

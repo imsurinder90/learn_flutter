@@ -42,7 +42,7 @@ class ImageCategoryModel {
     ImageCategory(name: 'Dream', image: 'assets/images/cats/dream.png'),
     ImageCategory(name: 'Halloween', image: 'assets/images/cats/halloween.png'),
     ImageCategory(name: 'Women', image: 'assets/images/cats/women.png'),
-    ImageCategory(name: 'Money', image: 'assets/images/cats/money.png'),
+    // ImageCategory(name: 'Money', image: 'assets/images/cats/money.png'),
     ImageCategory(name: 'Inspiring', image: 'assets/images/cats/inspiring.png'),
     ImageCategory(name: 'Peace', image: 'assets/images/cats/peace.png'),
     ImageCategory(
@@ -69,7 +69,7 @@ class ImageCategoryModel {
         name: 'Be Yourself', image: 'assets/images/cats/be-yourself.png'),
     ImageCategory(
         name: 'Good Night', image: 'assets/images/cats/good-night.png'),
-    ImageCategory(name: 'Success', image: 'assets/images/cats/success.png'),
+    // ImageCategory(name: 'Success', image: 'assets/images/cats/success.png'),
     ImageCategory(name: 'Elon Musk', image: 'assets/images/cats/elon-musk.png'),
     ImageCategory(name: 'Failure', image: 'assets/images/cats/failure.png'),
     ImageCategory(
@@ -108,13 +108,20 @@ class ImageCategory {
 
 class TextCategoryModel {
   static final cats = [
-    TextCategory(name: "new", image: "assets/images/cats/new.png"),
-    TextCategory(name: "fire", image: "assets/images/cats/fire.png"),
-    TextCategory(name: "age", image: "assets/images/cats/love.jpg"),
-    TextCategory(name: "person", image: "assets/images/cats/people.png"),
+    TextCategory(name: 'Fitness', image: 'assets/images/cats/fitness.png'),
+    TextCategory(name: "love", image: "assets/images/cats/love.jpg"),
     TextCategory(name: "life", image: "assets/images/cats/life.png"),
+    TextCategory(name: 'Faith', image: 'assets/images/cats/believe.png'),
+    TextCategory(name: 'Dreams', image: 'assets/images/cats/dream.png'),
     TextCategory(
-        name: "compassion", image: "assets/images/cats/compassion.png"),
+        name: 'Inspirational', image: 'assets/images/cats/inspirational.png'),
+    TextCategory(name: 'Happiness', image: 'assets/images/cats/happiness.png'),
+    TextCategory(name: 'Success', image: 'assets/images/cats/success.png'),
+    TextCategory(
+        name: 'Friendship', image: 'assets/images/cats/friendship.png'),
+    TextCategory(name: 'Failure', image: 'assets/images/cats/failure.png'),
+    TextCategory(name: 'Marriage', image: 'assets/images/cats/marriage.png'),
+    TextCategory(name: 'Alone', image: 'assets/images/cats/alone.png'),
   ];
 
   static String getImgCatByText(String name) {

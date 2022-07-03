@@ -91,8 +91,12 @@ class _ImageQuoteRefreshState extends State<ImageQuoteRefresh> {
     final List<ImgQuote> mdocs;
 
     CollectionReference ref = _db.collection(imageQuotes);
+    var key = ref.doc().id;
     snapshot = isLoading
-        ? await ref.limit(docLimit).get() as QuerySnapshot<Map<String, dynamic>>
+        ? await ref
+            .where(FieldPath.documentId, isGreaterThanOrEqualTo: key)
+            .limit(docLimit)
+            .get() as QuerySnapshot<Map<String, dynamic>>
         : await ref.startAfterDocument(lastSnap).limit(docLimit).get()
             as QuerySnapshot<Map<String, dynamic>>;
     mdocs = (snapshot.docs.isNotEmpty)
@@ -118,9 +122,13 @@ class _ImageQuoteRefreshState extends State<ImageQuoteRefresh> {
     String imgCat = mycategory.value.toLowerCase();
 
     CollectionReference ref = _db.collection(imageQuotes);
+    var key = ref.doc().id;
     snapshot = isLoading
-        ? await ref.where('category', isEqualTo: imgCat).limit(docLimit).get()
-            as QuerySnapshot<Map<String, dynamic>>
+        ? await ref
+            .where('category', isEqualTo: imgCat)
+            .where(FieldPath.documentId, isGreaterThanOrEqualTo: key)
+            .limit(docLimit)
+            .get() as QuerySnapshot<Map<String, dynamic>>
         : await ref
             .where('category', isEqualTo: imgCat)
             .startAfterDocument(lastSnap)
@@ -181,12 +189,10 @@ class _ImageQuoteRefreshState extends State<ImageQuoteRefresh> {
                   return Center(child: Text("No picture quotes found"));
                 }
                 return ImageQuoteListView(
-                  data: data,
-                  hasNext: hasNext,
-                  controller: controller,
-                  screenName: "image",
-                  callbackMethod: reload,
-                );
+                    data: data,
+                    hasNext: hasNext,
+                    controller: controller,
+                    screenName: "image");
             }
           },
         ),

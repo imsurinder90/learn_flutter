@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:learn_flutter/theme/themes.dart';
 import 'package:learn_flutter/utils/user_shared_pref.dart';
 import 'package:learn_flutter/utils/utilities.dart';
@@ -23,6 +24,9 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    // currentTheme.switchStatusBarStyle(context, 3);
+    currentTheme.switchStatusBarStyle(
+        context, 2); // #TODO: there is bug due to this
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.appBarBgColor,
@@ -37,7 +41,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Card(
                 elevation: 1,
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(color: Colors.white70, width: 1),
+                  // side: BorderSide(color: Colors.white70, width: 1),
                   borderRadius: BorderRadius.circular(0),
                 ),
                 child: SwitchListTile(
@@ -59,7 +63,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Card(
               elevation: 1,
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.white70, width: 1),
+                // side: BorderSide(color: Colors.white70, width: 1),
                 borderRadius: BorderRadius.circular(0),
               ),
               child: ListTile(
@@ -82,7 +86,7 @@ class _SettingsPageState extends State<SettingsPage> {
             Card(
               elevation: 1,
               shape: RoundedRectangleBorder(
-                side: BorderSide(color: Colors.white70, width: 1),
+                // side: BorderSide(color: Colors.white70, width: 1),
                 borderRadius: BorderRadius.circular(0),
               ),
               child: ListTile(
