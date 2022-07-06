@@ -80,34 +80,6 @@ class _MyAppState extends State<MyApp> {
                 ),
           }),
     );
-    // return MaterialApp(
-    //   // navigatorKey: NavigationService.instance.navigationKey,
-    //   // home: DestinationScreen(),
-    //   home: ImageQuotePage(),
-    //   debugShowCheckedModeBanner: false,
-    //   theme: ThemeData(
-    //       brightness: Brightness.light,
-    //       fontFamily: GoogleFonts.lato().fontFamily,
-    //       tabBarTheme: TabBarTheme(
-    //           labelColor: Colors.pink[800],
-    //           labelStyle: TextStyle(color: Colors.pink[800]), // color for text
-    //           indicator: UnderlineTabIndicator(
-    //               // color for indicator (underline)
-    //               borderSide:
-    //                   BorderSide(color: Colors.orangeAccent, width: 3))),
-    //       primaryColor: Colors.pink[800] // deprecated,
-    //       ),
-
-    //   // theme: ThemeData(
-    //   //     primarySwatch: Colors.purple,
-    //   //     fontFamily: GoogleFonts.lato().fontFamily),
-    //   // initialRoute: MyRoutes.favQuoteRoute,
-    //   // routes: {
-    //   //   MyRoutes.imageQuoteRoute: (context) => ImageQuotePage(),
-    //   //   MyRoutes.textQuoteRoute: (context) => TextQuote(),
-    //   //   MyRoutes.favQuoteRoute: (context) => FavoritePage(),
-    //   // }
-    // );
   }
 }
 
@@ -214,35 +186,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-
-
-// import 'package:flutter/material.dart';
-// import 'package:learn_flutter/models/cart_model.dart';
-// import 'package:learn_flutter/pages/mycatalog.dart';
-// import 'package:provider/provider.dart';
-
-// Future<void> main() async {
-//   runApp(
-//     MyApp(),
-//   );
-// }
-
-// class MyApp extends StatefulWidget {
-//   const MyApp({Key? key}) : super(key: key);
-
-//   @override
-//   State<MyApp> createState() => _MyAppState();
-// }
-
-// class _MyAppState extends State<MyApp> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return ChangeNotifierProvider(
-//       create: (context) => CartModel(),
-//       child: MaterialApp(
-//         home: MyCatalog(),
-//       ),
-//     );
-//   }
-// }

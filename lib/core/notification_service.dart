@@ -4,6 +4,7 @@ import 'package:learn_flutter/core/navigation_sevice.dart';
 import 'package:learn_flutter/pages/show_daily_quotes.dart';
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 
 class NotificationService {
   // Singleton pattern
@@ -55,21 +56,15 @@ class NotificationService {
 
     // *** Initialize timezone here ***
     tz.initializeTimeZones();
+    await FlutterNativeTimezone.getLocalTimezone().then((currentTimeZone) =>
+        {tz.setLocalLocation(tz.getLocation(currentTimeZone))});
 
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onSelectNotification: onSelectNotification,
     );
+
     return flutterLocalNotificationsPlugin;
-
-    // final NotificationAppLaunchDetails? notificationAppLaunchDetails =
-    //     await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
-
-    // String? payload = notificationAppLaunchDetails!.payload;
-    // print("payload: $payload");
-    // if (payload != null) {
-    //   onSelectNotification(payload);
-    // }
   }
 
   Future<void> showNotification(
@@ -97,24 +92,29 @@ class NotificationService {
             UILocalNotificationDateInterpretation.absoluteTime);
   }
 
-  tz.TZDateTime _nextInstanceOfNineAM() {
+  tz.TZDateTime _nextInstanceOfNineAM(int days) {
     final tz.TZDateTime now = tz.TZDateTime.now(tz.local);
     tz.TZDateTime scheduledDate =
-        tz.TZDateTime(tz.local, now.year, now.month, now.day, 09);
+        tz.TZDateTime(tz.local, now.year, now.month, now.day, 15, 30, 30);
     if (scheduledDate.isBefore(now)) {
-      scheduledDate = scheduledDate.add(const Duration(days: 1));
+      scheduledDate = scheduledDate.add(Duration(days: days)); // was days: 1
+      print("Before: schedule for day: ${scheduledDate.day}");
+    } else if (scheduledDate.isAfter(now)) {
+      scheduledDate = scheduledDate.add(Duration(days: days));
+      print("After: schedule for day: ${scheduledDate.day}");
     }
+    print("came here: $days");
     return scheduledDate;
   }
 
   Future<void> scheduleDailyNineAMNotification(int id, String title,
-      String body, NotificationDetails myNotificationDetails) async {
+      String body, NotificationDetails myNotificationDetails, int days) async {
     await flutterLocalNotificationsPlugin.zonedSchedule(
-        id, title, body, _nextInstanceOfNineAM(), myNotificationDetails,
+        id, title, body, _nextInstanceOfNineAM(days), myNotificationDetails,
+        payload: body,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.absoluteTime,
-        matchDateTimeComponents: DateTimeComponents.time);
+            UILocalNotificationDateInterpretation.absoluteTime);
   }
 
   Future<void> cancelNotification(int id) async {

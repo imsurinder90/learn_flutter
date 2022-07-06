@@ -1,13 +1,13 @@
 class ImageCategoryModel {
   static final cats = [
-    ImageCategory(name: "new", image: "assets/images/cats/new.png"),
-    ImageCategory(name: "love", image: "assets/images/cats/love.jpg"),
+    // ImageCategory(name: "new", image: "assets/images/cats/new.png"),
+    ImageCategory(name: "love", image: "assets/images/cats/love.png"),
     ImageCategory(name: "people", image: "assets/images/cats/people.png"),
     ImageCategory(name: "life", image: "assets/images/cats/life.png"),
     ImageCategory(name: 'Health', image: 'assets/images/cats/health.png'),
     // ImageCategory(
     //     name: 'Motivational', image: 'assets/images/cats/motivational.png'),
-    ImageCategory(name: 'Sad', image: 'assets/images/cats/sad.png'),
+    ImageCategory(name: 'Sad', image: 'assets/images/cats/failure.png'),
     ImageCategory(name: 'Fitness', image: 'assets/images/cats/fitness.png'),
     ImageCategory(
         name: 'Mothers Day', image: 'assets/images/cats/mothers-day.png'),
@@ -23,7 +23,6 @@ class ImageCategoryModel {
     ImageCategory(
         name: 'Leadership', image: 'assets/images/cats/leadership.png'),
     ImageCategory(name: 'Buddha', image: 'assets/images/cats/buddha.png'),
-    ImageCategory(name: 'Happiness', image: 'assets/images/cats/happiness.png'),
     ImageCategory(name: 'Trust', image: 'assets/images/cats/trust.png'),
     ImageCategory(name: 'Travel', image: 'assets/images/cats/travel.png'),
     ImageCategory(name: 'Life', image: 'assets/images/cats/life.png'),
@@ -54,15 +53,13 @@ class ImageCategoryModel {
     ImageCategory(name: 'Dance', image: 'assets/images/cats/dance.png'),
     ImageCategory(name: 'Christmas', image: 'assets/images/cats/christmas.png'),
     ImageCategory(name: 'Believe', image: 'assets/images/cats/believe.png'),
-    ImageCategory(
-        name: 'Loneliness', image: 'assets/images/cats/loneliness.png'),
+    ImageCategory(name: 'Loneliness', image: 'assets/images/cats/alone.png'),
     ImageCategory(name: 'Gym', image: 'assets/images/cats/gym.png'),
-    ImageCategory(name: 'Happy', image: 'assets/images/cats/happy.png'),
+    ImageCategory(name: 'Happy', image: 'assets/images/cats/happiness.png'),
     ImageCategory(
         name: 'Life Is Short', image: 'assets/images/cats/life-is-short.png'),
-    ImageCategory(
-        name: 'Discipline', image: 'assets/images/cats/discipline.png'),
-    ImageCategory(name: 'Love', image: 'assets/images/cats/love.jpg'),
+    ImageCategory(name: 'Discipline', image: 'assets/images/cats/believe.png'),
+    ImageCategory(name: 'Love', image: 'assets/images/cats/love.png'),
     ImageCategory(
         name: 'Photography', image: 'assets/images/cats/photography.png'),
     ImageCategory(
@@ -70,13 +67,12 @@ class ImageCategoryModel {
     ImageCategory(
         name: 'Good Night', image: 'assets/images/cats/good-night.png'),
     // ImageCategory(name: 'Success', image: 'assets/images/cats/success.png'),
-    ImageCategory(name: 'Elon Musk', image: 'assets/images/cats/elon-musk.png'),
+    ImageCategory(name: 'Elon Musk', image: 'assets/images/cats/happiness.png'),
     ImageCategory(name: 'Failure', image: 'assets/images/cats/failure.png'),
     ImageCategory(
-        name: 'You Can Do It', image: 'assets/images/cats/you-can.png'),
+        name: 'You Can Do It', image: 'assets/images/cats/you-can-do-it.png'),
     ImageCategory(name: 'Education', image: 'assets/images/cats/education.png'),
-    ImageCategory(
-        name: 'Yogi Berra', image: 'assets/images/cats/yogi-berra.png'),
+    ImageCategory(name: 'Yogi Berra', image: 'assets/images/cats/people.png'),
     ImageCategory(name: 'Wisdom', image: 'assets/images/cats/wisdom.png'),
     ImageCategory(
         name: 'Never Give Up', image: 'assets/images/cats/never-give-up.png'),
@@ -84,7 +80,7 @@ class ImageCategoryModel {
     ImageCategory(name: 'Marriage', image: 'assets/images/cats/marriage.png'),
     ImageCategory(name: 'Nature', image: 'assets/images/cats/nature.png'),
     ImageCategory(name: 'Humanity', image: 'assets/images/cats/humanity.png'),
-    ImageCategory(name: 'Positive', image: 'assets/images/cats/positivity.png'),
+    ImageCategory(name: 'Positive', image: 'assets/images/cats/positive.png'),
   ];
 
   static String getImgCatByImages(String name) {
@@ -109,7 +105,7 @@ class ImageCategory {
 class TextCategoryModel {
   static final cats = [
     TextCategory(name: 'Fitness', image: 'assets/images/cats/fitness.png'),
-    TextCategory(name: "love", image: "assets/images/cats/love.jpg"),
+    TextCategory(name: "love", image: "assets/images/cats/love.png"),
     TextCategory(name: "life", image: "assets/images/cats/life.png"),
     TextCategory(name: 'Faith', image: 'assets/images/cats/believe.png'),
     TextCategory(name: 'Dreams', image: 'assets/images/cats/dream.png'),

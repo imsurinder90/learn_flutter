@@ -9,7 +9,8 @@ class NotificationsUtils {
   NotificationService notificationService = NotificationService();
 
   scheduleDailyQuotes() async {
-    // notificationService.cancelAllNotifications();
+    await notificationService.init();
+    notificationService.cancelAllNotifications();
     UserSharedPrefernces.clearDailyQuote();
     List<String> dQuotes = UserSharedPrefernces.getDailyQuote();
     String lstDayFetched = UserSharedPrefernces.getlastDayFetched();
@@ -18,7 +19,7 @@ class NotificationsUtils {
         : DateTime.now();
     // DateTime lstDayFetchedObject = DateTime(2022, 05, 26);
     print("isempty: ${dQuotes.isEmpty}");
-    print(UserSharedPrefernces.getDailyQuote().length);
+    print(dQuotes.length);
     print(
         "date diff ${UserSharedPrefernces.daysBetween(DateTime.now(), lstDayFetchedObject).abs()}");
     if (dQuotes.isEmpty ||
@@ -43,6 +44,7 @@ class NotificationsUtils {
     var quotes = db.collection("dailyquotes");
     var key = quotes.doc().id;
     int sec = 0;
+    int days = -1;
 
     quotes
         .where(FieldPath.documentId, isGreaterThanOrEqualTo: key)
@@ -51,27 +53,7 @@ class NotificationsUtils {
         .then((QuerySnapshot snapshot) {
       if (snapshot.size > 0) {
         snapshot.docs.forEach((doc) async {
-          try {
-            sec += 30;
-            print("${doc.id}, '=>', ${doc.data()}");
-            String text = doc.data().toString().contains('text')
-                ? doc['text']
-                : 'no data';
-            if (text.isNotEmpty) {
-              await UserSharedPrefernces.saveDailyQuote(text);
-              await fiveSecond(Utilities.getRandomNo(), title, text, sec);
-            }
-          } catch (e) {
-            print(e.toString());
-          }
-        });
-      } else {
-        var quote = quotes
-            .where(FieldPath.documentId, isLessThan: key)
-            .limit(docLimit)
-            .get()
-            .then((QuerySnapshot snapshot) {
-          snapshot.docs.forEach((doc) async {
+          Future.delayed(const Duration(milliseconds: 500), () async {
             try {
               sec += 30;
               print("${doc.id}, '=>', ${doc.data()}");
@@ -79,8 +61,11 @@ class NotificationsUtils {
                   ? doc['text']
                   : 'no data';
               if (text.isNotEmpty) {
-                await UserSharedPrefernces.saveDailyQuote(text);
-                await fiveSecond(Utilities.getRandomNo(), title, text, sec);
+                print("scheduling");
+                UserSharedPrefernces.saveDailyQuote(text);
+                // await fiveSecond(Utilities.getRandomNo(), title, text, sec);
+                daily9AM(Utilities.getRandomNo(), title, text, ++days);
+                // days += 1;
               }
             } catch (e) {
               print(e.toString());
@@ -97,5 +82,13 @@ class NotificationsUtils {
         android: notificationService.setAndNotBigDetails(msg));
     await notificationService.scheduleFiveSecondNotification(
         channelId, title, msg, myNotificationDetails, seconds);
+  }
+
+  Future<void> daily9AM(
+      int channelId, String title, String msg, int days) async {
+    final NotificationDetails myNotificationDetails = NotificationDetails(
+        android: notificationService.setAndNotBigDetails(msg));
+    await notificationService.scheduleDailyNineAMNotification(
+        channelId, title, msg, myNotificationDetails, days);
   }
 }

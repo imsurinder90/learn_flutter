@@ -14,16 +14,8 @@ class NavigationService {
   }
 
   Future<dynamic> navigateTo(Route _rn) {
-    // Route<dynamic> rt = MaterialPageRoute(builder: (_) => ImageQuotePage());
     return navigationKey.currentState!
         .pushAndRemoveUntil(_rn, (route) => route.isFirst);
-
-    // ModalRoute.withName(
-    //     '/imagequote') // Replace this with your root screen's route name (usually '/')
-    // );
-
-    // navigationKey.currentState!.popUntil(ModalRoute.withName('/dailyquote'));
-    // return navigationKey.currentState!.push(_rn).then((value) => null);
   }
 
   Future<dynamic> navigateToRoute(MaterialPageRoute _rn) {

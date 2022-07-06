@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "216202119622",
-    "project_id": "api-project-216202119622",
-    "storage_bucket": "api-project-216202119622.appspot.com"
+    "project_number": "690883316756",
+    "project_id": "positive-quotes-for-success",
+    "storage_bucket": "positive-quotes-for-success.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:216202119622:android:d8a29d31707cb002bc0ac7",
+        "mobilesdk_app_id": "1:690883316756:android:977404d15c31409b87eb01",
         "android_client_info": {
-          "package_name": "net.example.motvnlquotes"
+          "package_name": "com.mindset.positive.quotes.success"
         }
       },
       "oauth_client": [
         {
-          "client_id": "216202119622-eivpn4c65jsp0nuuev8hkpukdl3itpnl.apps.googleusercontent.com",
+          "client_id": "690883316756-2ab2eo7s9lj5qirldu9fb8v485bqq8n6.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAqTzpB1KetiBwtO4BdE9EJdCWQvPH44uE"
+          "current_key": "AIzaSyAZA--Gw7h5aukv-Mmjv3AVk-AgWXKc7cM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "216202119622-eivpn4c65jsp0nuuev8hkpukdl3itpnl.apps.googleusercontent.com",
+              "client_id": "690883316756-2ab2eo7s9lj5qirldu9fb8v485bqq8n6.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
